@@ -8,3 +8,4 @@
 import { SliceSimulator } from "@slicemachine/adapter-nuxt/simulator";
 import { components } from "~/slices";
 </script>
+~/slices__OLD

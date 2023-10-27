@@ -1,8 +1,8 @@
 {
-  "id": "hero",
+  "id": "alternate_grid",
   "type": "SharedSlice",
-  "name": "Hero",
-  "description": "Hero",
+  "name": "AlternateGrid",
+  "description": "AlternateGrid",
   "variations": [
     {
       "id": "default",
@@ -44,34 +44,28 @@
             "constraint": {},
             "thumbnails": []
           }
-        },
-        "callToActionLabel": {
-          "type": "Text",
-          "config": {
-            "label": "callToActionLabel",
-            "placeholder": ""
-          }
-        },
-        "callToActionLink": {
-          "type": "Link",
-          "config": {
-            "label": "callToActionLink",
-            "placeholder": "",
-            "allowTargetBlank": true,
-            "select": null
-          }
-        },
-        "full_image": {
-          "type": "Boolean",
-          "config": {
-            "label": "Full Image",
-            "default_value": false,
-            "placeholder_true": "true",
-            "placeholder_false": "false"
-          }
         }
       },
-      "items": {}
+      "items": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading2,heading3,heading4,heading5,heading6,strong,em"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,hyperlink,strong,em,list-item,o-list-item,rtl"
+          }
+        }
+      }
     },
     {
       "id": "imageRight",
@@ -113,47 +107,16 @@
             "constraint": {},
             "thumbnails": []
           }
-        },
-        "callToActionLabel": {
-          "type": "Text",
-          "config": {
-            "label": "callToActionLabel",
-            "placeholder": ""
-          }
-        },
-        "callToActionLink": {
-          "type": "Link",
-          "config": {
-            "label": "callToActionLink",
-            "placeholder": "",
-            "select": null
-          }
         }
       },
-      "items": {}
-    },
-    {
-      "id": "fullImage",
-      "name": "Full Image",
-      "docURL": "...",
-      "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
-      "primary": {
-        "eyebrowHeadline": {
-          "type": "Text",
-          "config": {
-            "label": "eyebrowHeadline",
-            "placeholder": "Eyebrow"
-          }
-        },
+      "items": {
         "title": {
           "type": "StructuredText",
           "config": {
             "label": "title",
             "placeholder": "",
             "allowTargetBlank": true,
-            "single": "heading1,heading2,heading3,heading4,heading5,heading6,strong,em"
+            "single": "heading2,heading3,heading4,heading5,heading6,strong,em"
           }
         },
         "description": {
@@ -162,44 +125,10 @@
             "label": "description",
             "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "paragraph,preformatted,hyperlink,embed,rtl,strong,em,list-item,o-list-item"
-          }
-        },
-        "image": {
-          "type": "Image",
-          "config": {
-            "label": "image",
-            "constraint": {},
-            "thumbnails": []
-          }
-        },
-        "callToActionLabel": {
-          "type": "Text",
-          "config": {
-            "label": "callToActionLabel",
-            "placeholder": ""
-          }
-        },
-        "callToActionLink": {
-          "type": "Link",
-          "config": {
-            "label": "callToActionLink",
-            "placeholder": "",
-            "allowTargetBlank": true,
-            "select": null
-          }
-        },
-        "full_image": {
-          "type": "Boolean",
-          "config": {
-            "label": "Full Image",
-            "default_value": false,
-            "placeholder_true": "true",
-            "placeholder_false": "false"
+            "multi": "paragraph,preformatted,hyperlink,strong,em,list-item,o-list-item,rtl"
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }
