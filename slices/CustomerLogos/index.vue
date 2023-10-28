@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Content, isFilled } from "@prismicio/client";
+import { isFilled, type Content } from "@prismicio/client";
 
 defineProps(
   getSliceComponentProps<Content.CustomerLogosSlice>([
@@ -26,8 +26,8 @@ defineProps(
       </div>
       <ul v-if="slice.items.length > 0" class="es-customer-logos__logos">
         <li
-          v-for="item in slice.items"
-          :key="item.image.url"
+          v-for="(item, i) in slice.items"
+          :key="i"
           class="es-customer-logos__logo"
         >
           <PrismicLink :field="item.link">
@@ -41,6 +41,7 @@ defineProps(
         </li>
       </ul>
       <PrismicLink
+        v-if="isFilled.link(slice.primary.callToActionLink)"
         :field="slice.primary.callToActionLink"
         class="es-customer-logos__button"
       >
@@ -50,12 +51,9 @@ defineProps(
   </section>
 </template>
 
-<style>
+<style lang="postcss">
 .es-bounded {
-  margin: 0px;
-  min-width: 0px;
-  position: relative;
-  padding: 8vw 1.25rem;
+  @apply m-0 min-w-0 relative py-32 px-5;
 }
 
 .es-bounded__content {
@@ -65,7 +63,6 @@ defineProps(
 }
 
 .es-customer-logos {
-  font-family: system-ui, sans-serif;
   background-color: #f4f0ec;
   color: #333;
 }

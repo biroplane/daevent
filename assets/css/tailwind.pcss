@@ -2,7 +2,7 @@
 @tailwind components;
 @layer components {
   .btn {
-    @apply px-8 py-2 rounded-md min-w-[4rem];
+    @apply px-8 py-2 rounded-md min-w-[4rem] cursor-pointer;
     &.cta {
       @apply bg-primary;
     }
@@ -11,8 +11,22 @@
     @apply bg-primary-500 text-white px-4 py-2 rounded-sm shadow-lg inline-block;
   }
   .card {
-    @apply p-4 rounded-md shadow-lg outline outline-4 outline-yellow-400;
+    @apply p-4 rounded-md shadow-lg border-4  border-primary-200;
   }
 }
 
 @tailwind utilities;
+@layer utilities {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+    @apply font-heading;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}

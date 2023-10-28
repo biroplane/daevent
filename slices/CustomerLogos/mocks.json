@@ -28,6 +28,17 @@
 						"direction": "ltr"
 					}
 				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Excepteur id est labore aliqua sint occaecat ipsum ad aliqua tempor dolor ut pariatur cillum."
+						}
+					}
+				]
 			}
 		},
 		"items": [

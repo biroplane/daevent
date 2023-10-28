@@ -1,3 +1,4 @@
+import axios from "axios";
 export const useShopStore = defineStore("shop", () => {
   const shop = ref();
   const place = ref();
@@ -13,8 +14,27 @@ export const useShopStore = defineStore("shop", () => {
     shop.value = (data as any).shop;
   };
   const loadPlace = async () => {
-    const data = await $fetch("/api/reviews");
-    place.value = data;
+    try {
+      const { data } = await axios({
+        method: "GET",
+        url: "https://maps.googleapis.com/maps/api/place/details/json",
+        params: {
+          key: process.env.GOOGLE_MAPS_API_KEY,
+          // libraries: "places",
+          place_id: process.env.GOOGLE_PLACE_ID,
+          language: "it",
+        },
+      });
+
+      place.value = data;
+      return data;
+    } catch (error: any) {
+      throw createError({
+        statusCode: 400,
+        message: error.message,
+        data: error,
+      });
+    }
   };
 
   return {

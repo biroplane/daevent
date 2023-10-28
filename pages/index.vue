@@ -22,14 +22,9 @@ useHead({
 </script>
 
 <template>
-  <div class="">
-    <SliceZone
-      wrapper="main"
-      :slices="page?.data.slices ?? []"
-      :components="components"
-    />
-    <div class="h-48"></div>
-    {{ locale }}
-    Link resolver {{ $prismic.options.linkResolver }}
-  </div>
+  <SliceZone
+    wrapper="main"
+    :slices="page?.data.slices ?? []"
+    :components="components"
+  />
 </template>

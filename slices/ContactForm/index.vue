@@ -42,15 +42,13 @@ const send = () => {
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-    class="px-8 py-24"
+    class=""
   >
-    <div
-      class="flex flex-col max-w-lg mx-auto rounded-lg lg:flex-row lg:max-w-4xl outline outline-4 outline-primary-600 bg-sand-200 @container"
-    >
+    <div class="flex flex-col w-full lg:flex-row bg-sand-200 @container">
       <div
-        class="flex flex-wrap items-baseline flex-none px-4 pt-4 pb-6 lg:pb-12 lg:items-start lg:flex-nowrap lg:rounded-l-lg lg:flex-col lg:w-1/3 bg-gradient-to-t from-primary-500 to-primary-300"
+        class="flex flex-wrap items-baseline flex-none px-4 py-24 lg:items-start lg:flex-nowrap lg:flex-col lg:w-1/3 bg-gradient-to-t from-indigo-500 to-indigo-300"
       >
-        <Logo class="hidden lg:block" />
+        <Logo class="hidden lg:block lg:mt-6" />
         <div class="flex-grow my-6 text-white">
           <h3 class="text-3xl font-bold leading-8">
             {{ slice.primary.title }}

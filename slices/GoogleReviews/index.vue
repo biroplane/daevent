@@ -31,20 +31,20 @@ if (ss.place?.status !== "OK") {
         />
       </div>
       <div
-        class="w-full h-full max-w-4xl px-12 py-12 mx-auto bg-white bg-opacity-70 backdrop-blur-lg"
+        class="w-full h-full max-w-4xl px-12 py-12 mx-auto bg-black bg-opacity-70 backdrop-blur-lg"
       >
-        <h5 class="text-2xl font-bold text-center">
+        <h5 class="text-2xl font-bold text-center text-black">
           {{ slice.primary.title }}
         </h5>
         <ClientOnly>
-          <p class="max-w-lg mx-auto text-sm text-center text-neutral-700">
+          <p class="mx-auto text-sm text-center text-neutral-700">
             <PrismicRichText :field="slice.primary.description" />
           </p>
-          <div class="grid grid-cols-3 gap-8 mt-12">
+          <div class="flex gap-8 overflow-x-auto flex-nowrap no-scrollbar">
             <div
-              v-for="(review, r) in ss.place.result.reviews.splice(0, 5)"
+              v-for="(review, r) in ss.place.result.reviews"
               :key="r"
-              class="card"
+              class="flex-grow-0 flex-shrink-0 w-1/3 basis-1/3 card"
             >
               <div class="flex items-center gap-4">
                 <h6
@@ -62,18 +62,21 @@ if (ss.place?.status !== "OK") {
                   class="text-yellow-500"
                 />
               </div>
-              <p class="text-xs italic leading-6 text-neutral-500">
+              <p
+                class="overflow-y-auto text-xs italic leading-6 text-neutral-100 max-h-48 no-scrollbar"
+              >
                 {{ review.text }}
               </p>
             </div>
           </div>
         </ClientOnly>
         <div class="mt-6 text-center">
-          <h6 class="mb-4 font-medium">Dicci la tua</h6>
+          <h6 class="mb-4 text-2xl font-bold">Dicci la tua</h6>
           <div>
             <a
-              href="https://www.google.com/search?q=don+cactus&rlz=1C5CHFA_enIT1044IT1044&oq=don+cac&gs_lcrp=EgZjaHJvbWUqCQgAECMYJxiKBTIJCAAQIxgnGIoFMg0IARAuGK8BGMcBGIAEMgYIAhBFGDkyBwgDEAAYgAQyBggEEEUYPDIGCAUQRRg8MgYIBhBFGDwyBggHEEUYQdIBCDE5NjlqMGoxqAIAsAIA&sourceid=chrome&ie=UTF-8#lrd=0x1347f9f63a5f97fb:0x8e40f9058d0764af,1,,,,:~:text=21%2C%20Terlizzi%20BA-,Scrivi%20una%20recensione,-4%2C9"
+              href="https://www.google.com/search?q=daevent+ruvo&sca_esv=577287814&rlz=1C5CHFA_enIT1044IT1044&sxsrf=AM9HkKlEAEIZrs58iTcZouFVd3IulW6vUw%3A1698440362705&ei=qiQ8ZZjXKsrY7_UPmbimwAY&ved=0ahUKEwiY1Pazj5eCAxVK7LsIHRmcCWgQ4dUDCBA&uact=5&oq=daevent+ruvo&gs_lp=Egxnd3Mtd2l6LXNlcnAiDGRhZXZlbnQgcnV2bzIFECEYoAEyBRAhGKABSNo6UO4FWIQ1cAN4AJABAJgB4wGgAe4PqgEGMC4xMS4xuAEDyAEA-AEBwgIKEAAYigUYsAMYQ8ICCRAAGAcYHhiwA8ICFhAuGIoFGMcBGNEDGMgDGLADGEPYAQHCAhcQLhivARjHARjLARiABBjIAxiwA9gBAcICGRAuGIoFGMcBGK8BGJgFGMgDGLADGEPYAQHCAgcQIxiKBRgnwgIEECMYJ8ICDBAjGIoFGBMYgAQYJ8ICDRAuGIoFGMcBGNEDGEPCAgUQABiABMICCxAuGIAEGMcBGNEDwgIHEC4YigUYQ8ICBRAuGIAEwgIHEAAYigUYQ8ICDRAuGIAEGMcBGNEDGArCAgcQABiABBgKwgILEC4YgAQYxwEYrwHCAhwQLhiABBjHARjRAxgKGJcFGNwEGN4EGOAE2AECwgIKEAAYywEYgAQYCsICChAuGMsBGIAEGArCAggQABjLARiABMICEBAuGMsBGIAEGMcBGNEDGArCAhAQLhjLARiABBjHARivARgKwgIEEAAYHsICBhAAGAUYHsICHxAuGMsBGIAEGMcBGK8BGAoYlwUY3AQY3gQY4ATYAQLiAwQYASBBiAYBkAYMugYECAEYCLoGBggCEAEYFA&sclient=gws-wiz-serp#lrd=0x13380988f5c69ae3:0x4fb9a388668b742f,1,,,,"
               class="font-medium underline"
+              target="_blank"
               >Scrivi la tua recensione</a
             >
             e condividila con tutti! ♥️

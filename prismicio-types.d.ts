@@ -175,6 +175,63 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 /**
+ * Item in *Navigation → Item*
+ */
+export interface NavigationDocumentDataItemItem {
+  /**
+   * Label field in *Navigation → Item*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.item[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Link field in *Navigation → Item*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.item[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * Content for Navigation documents
+ */
+interface NavigationDocumentData {
+  /**
+   * Item field in *Navigation*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.item[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  item: prismic.GroupField<Simplify<NavigationDocumentDataItemItem>>;
+}
+
+/**
+ * Navigation document from Prismic
+ *
+ * - **API ID**: `navigation`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type NavigationDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<NavigationDocumentData>,
+    "navigation",
+    Lang
+  >;
+
+/**
  * Content for Portfolio Category documents
  */
 interface PortfolioCategoryDocumentData {
@@ -350,6 +407,7 @@ export type TestimonialDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | BlogPostDocument
   | HomepageDocument
+  | NavigationDocument
   | PortfolioCategoryDocument
   | PortfolioItemDocument
   | TestimonialDocument;
@@ -782,6 +840,16 @@ export interface CustomerLogosSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   callToActionLink: prismic.LinkField;
+
+  /**
+   * body field in *CustomerLogos → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: customer_logos.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
 }
 
 /**
@@ -969,15 +1037,15 @@ export interface HeroSliceDefaultPrimary {
   callToActionLink: prismic.LinkField;
 
   /**
-   * Full Image field in *Hero → Primary*
+   * Reverse field in *Hero → Primary*
    *
    * - **Field Type**: Boolean
    * - **Placeholder**: *None*
    * - **Default Value**: false
-   * - **API ID Path**: hero.primary.full_image
+   * - **API ID Path**: hero.primary.reverse
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
-  full_image: prismic.BooleanField;
+  reverse: prismic.BooleanField;
 }
 
 /**
@@ -990,84 +1058,6 @@ export interface HeroSliceDefaultPrimary {
 export type HeroSliceDefault = prismic.SharedSliceVariation<
   "default",
   Simplify<HeroSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Primary content in *Hero → Primary*
- */
-export interface HeroSliceImageRightPrimary {
-  /**
-   * eyebrowHeadline field in *Hero → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: Eyebrow
-   * - **API ID Path**: hero.primary.eyebrowHeadline
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  eyebrowHeadline: prismic.KeyTextField;
-
-  /**
-   * title field in *Hero → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  title: prismic.RichTextField;
-
-  /**
-   * description field in *Hero → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  description: prismic.RichTextField;
-
-  /**
-   * image field in *Hero → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.image
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  image: prismic.ImageField<never>;
-
-  /**
-   * callToActionLabel field in *Hero → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.callToActionLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  callToActionLabel: prismic.KeyTextField;
-
-  /**
-   * callToActionLink field in *Hero → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.callToActionLink
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  callToActionLink: prismic.LinkField;
-}
-
-/**
- * Image Right variation for Hero Slice
- *
- * - **API ID**: `imageRight`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type HeroSliceImageRight = prismic.SharedSliceVariation<
-  "imageRight",
-  Simplify<HeroSliceImageRightPrimary>,
   never
 >;
 
@@ -1136,15 +1126,15 @@ export interface HeroSliceFullImagePrimary {
   callToActionLink: prismic.LinkField;
 
   /**
-   * Full Image field in *Hero → Primary*
+   * Reverse field in *Hero → Primary*
    *
    * - **Field Type**: Boolean
    * - **Placeholder**: *None*
    * - **Default Value**: false
-   * - **API ID Path**: hero.primary.full_image
+   * - **API ID Path**: hero.primary.reverse
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
-  full_image: prismic.BooleanField;
+  reverse: prismic.BooleanField;
 }
 
 /**
@@ -1163,10 +1153,7 @@ export type HeroSliceFullImage = prismic.SharedSliceVariation<
 /**
  * Slice variation for *Hero*
  */
-type HeroSliceVariation =
-  | HeroSliceDefault
-  | HeroSliceImageRight
-  | HeroSliceFullImage;
+type HeroSliceVariation = HeroSliceDefault | HeroSliceFullImage;
 
 /**
  * Hero Shared Slice
@@ -1266,6 +1253,9 @@ declare module "@prismicio/client" {
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
+      NavigationDocument,
+      NavigationDocumentData,
+      NavigationDocumentDataItemItem,
       PortfolioCategoryDocument,
       PortfolioCategoryDocumentData,
       PortfolioItemDocument,
@@ -1302,11 +1292,9 @@ declare module "@prismicio/client" {
       GoogleReviewsSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
-      HeroSliceImageRightPrimary,
       HeroSliceFullImagePrimary,
       HeroSliceVariation,
       HeroSliceDefault,
-      HeroSliceImageRight,
       HeroSliceFullImage,
       NewsletterSlice,
       NewsletterSliceVariation,

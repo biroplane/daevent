@@ -3,15 +3,6 @@ export default defineNuxtConfig({
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxtjs/prismic",
-    [
-      "@nuxtjs/google-fonts",
-      {
-        families: {
-          Bellota: true,
-          Inter: [100, 200, 300, 400, 500, 600, 700, 800, 900],
-        },
-      },
-    ],
     "nuxt-icon",
     "@nuxtjs/i18n",
     [
@@ -45,6 +36,16 @@ export default defineNuxtConfig({
 
     vueI18n: "./i18n.config.ts",
   },
+  // postcss: {
+  //   plugins: {
+  //     tailwindcss: {},
+  //     autoprefixer: {},
+  //     cssnano:
+  //       process.env.NODE_ENV === "production"
+  //         ? { preset: ["default", { discardComments: { removeAll: true } }] }
+  //         : false, // disable cssnano when not in production
+  //   },
+  // },
   prismic: {
     endpoint: "daevent",
     clientConfig: {
