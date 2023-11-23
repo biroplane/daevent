@@ -35,12 +35,12 @@ defineProps(
         }"
       >
         <div class="flex flex-col justify-center">
-          <p
+          <div
             v-if="isFilled.keyText(slice.primary.eyebrowHeadline)"
             class="text-sm lg:text-base text-neutral-500"
           >
             {{ slice.primary.eyebrowHeadline }}
-          </p>
+          </div>
           <div
             v-if="isFilled.richText(slice.primary.title)"
             class="mb-4 text-4xl font-bold lg:text-7xl text-primary-400"

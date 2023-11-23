@@ -1,0 +1,50 @@
+{
+  "id": "layout",
+  "label": "Layout",
+  "format": "custom",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Header": {
+      "sign_up_cta_text": {
+        "type": "Text",
+        "config": {
+          "label": "Sign up cta text",
+          "placeholder": ""
+        }
+      },
+      "dashboard_cta_text": {
+        "type": "Text",
+        "config": {
+          "label": "Dashboard cta text",
+          "placeholder": ""
+        }
+      },
+      "demo_cta_text": {
+        "type": "Text",
+        "config": {
+          "label": "Demo cta text",
+          "placeholder": ""
+        }
+      },
+      "login_cta_text": {
+        "type": "Text",
+        "config": {
+          "label": "Login cta text",
+          "placeholder": ""
+        }
+      },
+      "slices1": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "menu_item": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,203 @@
+local_backend: true
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+media_folder: public/img
+public_folder: /img
+publish_mode: editorial_workflow
+locale: "it"
+collections:
+  - name: "portfolio-item"
+    identifier_field: "title"
+    label: "Portfolio Item"
+    folder: "content/portfolio"
+    format: "frontmatter"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Id", name: "id", widget: "hidden", required: false }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Data di pubblicazione", name: "date", widget: "datetime" }
+      - { label: "Ultima modifica", name: "modified", widget: "datetime" }
+      # - {
+      #     label: "Copertina",
+      #     name: "featured_image",
+      #     widget: "image",
+      #     choose_url: true,
+      #     media_library: { config: { multiple: false } },
+      #     required: false,
+      #   }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - {
+          label: "Tag",
+          name: "portfolio_tag",
+          widget: "relation",
+          collection: "portfolio_tag",
+          search_fields: ["name"],
+          value_field: "slug",
+          display_fields: ["name"],
+          required: false,
+          multiple: true,
+        }
+      - {
+          label: "Category",
+          name: "portfolio_category",
+          widget: "relation",
+          collection: "portfolio_category",
+          search_fields: ["title"],
+          value_field: "slug",
+          display_fields: ["title"],
+          required: false,
+          multiple: true,
+        }
+      - {
+          label: "Skills",
+          name: "portfolio_skills",
+          widget: "relation",
+          collection: "portfolio_skills",
+          search_fields: ["title"],
+          value_field: "slug",
+          display_fields: ["title"],
+          required: false,
+          multiple: true,
+        }
+      - {
+          label: "Autore",
+          name: "author",
+          widget: "relation",
+          collection: "author",
+          search_fields: ["name", "twitterHandle"],
+          value_field: "name",
+          display_fields: ["nickname"],
+        }
+
+  - name: "portfolio_category"
+    identifier_field: "title"
+    label: "Portfolio Category"
+    folder: "content/portfolio-category"
+    format: "frontmatter"
+    create: true
+    slug: "{{title}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Nome", name: "title", widget: "string" }
+  - name: "portfolio_skills"
+    identifier_field: "title"
+    label: "Portfolio Skill"
+    folder: "content/portfolio-skills"
+    format: "frontmatter"
+    create: true
+    slug: "{{title}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Nome", name: "title", widget: "string" }
+  - name: "tag"
+    identifier_field: "title"
+    label: "Tag"
+    folder: "content/tags"
+    format: "frontmatter"
+    create: true
+    slug: "{{title}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Nome", name: "title", widget: "string" }
+  # - name: "portfolio_category"
+  #   identifier_field: "title"
+  #   label: "Portfolio category"
+  #   folder: "content/portfolio-category"
+  #   format: "frontmatter"
+  #   create: true
+  #   slug: "{{title}}"
+  #   editor:
+  #     preview: false
+  #   fields:
+  #     - { label: "Nome", name: "title", widget: "string" }
+  - name: "blog"
+    label: "Blog"
+    folder: "content/blog"
+    preview_path_date_field: "updated_on"
+    format: "frontmatter"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - { label: "Id", name: "id", widget: "hidden", required: false }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Data di pubblicazione", name: "date", widget: "datetime" }
+      - { label: "In evidenza", name: "featured", widget: "boolean" }
+      - {
+          label: "Copertina",
+          name: "image",
+          widget: "image",
+          choose_url: true,
+          media_library: { config: { multiple: false } },
+          required: false,
+        }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - {
+          label: "Galleria",
+          name: "gallery",
+          widget: "image",
+          choose_url: true,
+          media_library: { config: { multiple: true } },
+          required: false,
+        }
+      - {
+          label: "Tag",
+          name: "tag",
+          widget: "relation",
+          collection: "tag",
+          search_fields: ["name"],
+          value_field: "slug",
+          display_fields: ["name"],
+          required: false,
+          multiple: true,
+        }
+      - {
+          label: "Category",
+          name: "category",
+          widget: "relation",
+          collection: "category",
+          search_fields: ["name"],
+          value_field: "slug",
+          display_fields: ["name"],
+          required: false,
+          multiple: true,
+        }
+      - {
+          label: "Autore",
+          name: "author",
+          widget: "relation",
+          collection: "author",
+          search_fields: ["name", "twitterHandle"],
+          value_field: "name",
+          display_fields: ["nickname"],
+        }
+  - name: "author"
+    identifier_field: "nickname"
+    label: "Autori"
+    folder: "content/authors"
+    format: "frontmatter"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Nome", name: "title", widget: "string" }
+      - { label: "Cognome", name: "last_name", widget: "string" }
+      - { label: "Nickname", name: "nickname", widget: "string" }
+      - { label: "slug", name: "slug", widget: "string" }
+      - {
+          label: "Twitter",
+          name: "twitterHandle",
+          widget: "string",
+          required: false,
+        }
+      - { label: "Email", name: "email", widget: "string" }
+      - { label: "Avatar", name: "avatar", widget: "image", required: false }

@@ -25,7 +25,7 @@
           "label": "Body",
           "placeholder": "",
           "allowTargetBlank": true,
-          "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          "multi": "heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,list-item,o-list-item,paragraph"
         }
       },
       "image": {
@@ -34,6 +34,22 @@
           "label": "Image",
           "constraint": {},
           "thumbnails": []
+        }
+      },
+      "categories": {
+        "type": "Group",
+        "config": {
+          "label": "Categories",
+          "fields": {
+            "category": {
+              "type": "Link",
+              "config": {
+                "label": "Category",
+                "select": "document",
+                "customtypes": ["portfolio_category"]
+              }
+            }
+          }
         }
       }
     }

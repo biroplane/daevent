@@ -174,45 +174,136 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
+type LayoutDocumentDataSlices1Slice = MenuItemSlice;
+
 /**
- * Item in *Navigation → Item*
+ * Content for Layout documents
  */
-export interface NavigationDocumentDataItemItem {
+interface LayoutDocumentData {
   /**
-   * Label field in *Navigation → Item*
+   * Sign up cta text field in *Layout*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.item[].label
+   * - **API ID Path**: layout.sign_up_cta_text
+   * - **Tab**: Header
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  sign_up_cta_text: prismic.KeyTextField;
+
+  /**
+   * Dashboard cta text field in *Layout*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: layout.dashboard_cta_text
+   * - **Tab**: Header
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  dashboard_cta_text: prismic.KeyTextField;
+
+  /**
+   * Demo cta text field in *Layout*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: layout.demo_cta_text
+   * - **Tab**: Header
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  demo_cta_text: prismic.KeyTextField;
+
+  /**
+   * Login cta text field in *Layout*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: layout.login_cta_text
+   * - **Tab**: Header
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  login_cta_text: prismic.KeyTextField;
+
+  /**
+   * Slice Zone field in *Layout*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: layout.slices1[]
+   * - **Tab**: Header
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices1: prismic.SliceZone<LayoutDocumentDataSlices1Slice>;
+}
+
+/**
+ * Layout document from Prismic
+ *
+ * - **API ID**: `layout`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type LayoutDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<LayoutDocumentData>,
+    "layout",
+    Lang
+  >;
+
+/**
+ * Item in *Navigation → Items*
+ */
+export interface NavigationDocumentDataItemsItem {
+  /**
+   * Label field in *Navigation → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.items[].label
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   label: prismic.KeyTextField;
 
   /**
-   * Link field in *Navigation → Item*
+   * Link field in *Navigation → Items*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.item[].link
+   * - **API ID Path**: navigation.items[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   link: prismic.LinkField;
 }
+
+type NavigationDocumentDataSlicesSlice = NavigationItemSlice;
 
 /**
  * Content for Navigation documents
  */
 interface NavigationDocumentData {
   /**
-   * Item field in *Navigation*
+   * Items field in *Navigation*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.item[]
+   * - **API ID Path**: navigation.items[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#group
    */
-  item: prismic.GroupField<Simplify<NavigationDocumentDataItemItem>>;
+  items: prismic.GroupField<Simplify<NavigationDocumentDataItemsItem>>;
+
+  /**
+   * Slice Zone field in *Navigation*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<NavigationDocumentDataSlicesSlice>;
 }
 
 /**
@@ -230,6 +321,21 @@ export type NavigationDocument<Lang extends string = string> =
     "navigation",
     Lang
   >;
+
+/**
+ * Item in *Portfolio Category → Items*
+ */
+export interface PortfolioCategoryDocumentDataItemsItem {
+  /**
+   * Portfolio Item field in *Portfolio Category → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_category.items[].portfolio_item
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  portfolio_item: prismic.ContentRelationshipField;
+}
 
 /**
  * Content for Portfolio Category documents
@@ -258,15 +364,15 @@ interface PortfolioCategoryDocumentData {
   body: prismic.RichTextField;
 
   /**
-   * Portfolio Item field in *Portfolio Category*
+   * Items field in *Portfolio Category*
    *
-   * - **Field Type**: Content Relationship
+   * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: portfolio_category.portfolio_item
+   * - **API ID Path**: portfolio_category.items[]
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/field#group
    */
-  portfolio_item: prismic.ContentRelationshipField<"portfolio_item">;
+  items: prismic.GroupField<Simplify<PortfolioCategoryDocumentDataItemsItem>>;
 }
 
 /**
@@ -284,6 +390,21 @@ export type PortfolioCategoryDocument<Lang extends string = string> =
     "portfolio_category",
     Lang
   >;
+
+/**
+ * Item in *Portfolio Item → Categories*
+ */
+export interface PortfolioItemDocumentDataCategoriesItem {
+  /**
+   * Category field in *Portfolio Item → Categories*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_item.categories[].category
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  category: prismic.ContentRelationshipField<"portfolio_category">;
+}
 
 /**
  * Content for Portfolio Item documents
@@ -321,6 +442,19 @@ interface PortfolioItemDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>;
+
+  /**
+   * Categories field in *Portfolio Item*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_item.categories[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  categories: prismic.GroupField<
+    Simplify<PortfolioItemDocumentDataCategoriesItem>
+  >;
 }
 
 /**
@@ -336,6 +470,127 @@ export type PortfolioItemDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
     Simplify<PortfolioItemDocumentData>,
     "portfolio_item",
+    Lang
+  >;
+
+type StaticPageDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Static Page documents
+ */
+interface StaticPageDocumentData {
+  /**
+   * Slice Zone field in *Static Page*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: static_page.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<StaticPageDocumentDataSlicesSlice> /**
+   * Meta Description field in *Static Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: static_page.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Static Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: static_page.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Static Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: static_page.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Static Page document from Prismic
+ *
+ * - **API ID**: `static_page`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type StaticPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<StaticPageDocumentData>,
+    "static_page",
+    Lang
+  >;
+
+type SubMenuDocumentDataSlicesSlice = SubMenuItemSlice | HeadingSlice;
+
+type SubMenuDocumentDataSlices1Slice = HeadingSlice | SubMenuItemSlice;
+
+type SubMenuDocumentDataSlices2Slice = HeadingSlice | SubMenuItemSlice;
+
+/**
+ * Content for Sub Menu documents
+ */
+interface SubMenuDocumentData {
+  /**
+   * Slice Zone field in *Sub Menu*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_menu.slices[]
+   * - **Tab**: Column 1
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<SubMenuDocumentDataSlicesSlice> /**
+   * Slice Zone field in *Sub Menu*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_menu.slices1[]
+   * - **Tab**: Column 2
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */;
+  slices1: prismic.SliceZone<SubMenuDocumentDataSlices1Slice> /**
+   * Slice Zone field in *Sub Menu*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_menu.slices2[]
+   * - **Tab**: Column 3
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */;
+  slices2: prismic.SliceZone<SubMenuDocumentDataSlices2Slice>;
+}
+
+/**
+ * Sub Menu document from Prismic
+ *
+ * - **API ID**: `sub_menu`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SubMenuDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<SubMenuDocumentData>,
+    "sub_menu",
     Lang
   >;
 
@@ -407,9 +662,12 @@ export type TestimonialDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | BlogPostDocument
   | HomepageDocument
+  | LayoutDocument
   | NavigationDocument
   | PortfolioCategoryDocument
   | PortfolioItemDocument
+  | StaticPageDocument
+  | SubMenuDocument
   | TestimonialDocument;
 
 /**
@@ -973,6 +1231,51 @@ export type GoogleReviewsSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *Heading → Primary*
+ */
+export interface HeadingSliceDefaultPrimary {
+  /**
+   * Label field in *Heading → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: heading.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Heading Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeadingSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<HeadingSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Heading*
+ */
+type HeadingSliceVariation = HeadingSliceDefault;
+
+/**
+ * Heading Shared Slice
+ *
+ * - **API ID**: `heading`
+ * - **Description**: Heading
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeadingSlice = prismic.SharedSlice<
+  "heading",
+  HeadingSliceVariation
+>;
+
+/**
  * Primary content in *Hero → Primary*
  */
 export interface HeroSliceDefaultPrimary {
@@ -1165,6 +1468,179 @@ type HeroSliceVariation = HeroSliceDefault | HeroSliceFullImage;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Primary content in *MenuItem → Primary*
+ */
+export interface MenuItemSliceDefaultPrimary {
+  /**
+   * Label field in *MenuItem → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_item.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Link field in *MenuItem → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_item.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * Default variation for MenuItem Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MenuItemSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<MenuItemSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *MenuItem → Primary*
+ */
+export interface MenuItemSliceWithSubMenuPrimary {
+  /**
+   * Label field in *MenuItem → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_item.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Sub Menu field in *MenuItem → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_item.primary.sub_menu
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  sub_menu: prismic.ContentRelationshipField<"sub_menu">;
+}
+
+/**
+ * withSubMenu variation for MenuItem Slice
+ *
+ * - **API ID**: `withSubMenu`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MenuItemSliceWithSubMenu = prismic.SharedSliceVariation<
+  "withSubMenu",
+  Simplify<MenuItemSliceWithSubMenuPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *MenuItem*
+ */
+type MenuItemSliceVariation = MenuItemSliceDefault | MenuItemSliceWithSubMenu;
+
+/**
+ * MenuItem Shared Slice
+ *
+ * - **API ID**: `menu_item`
+ * - **Description**: MenuItem
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MenuItemSlice = prismic.SharedSlice<
+  "menu_item",
+  MenuItemSliceVariation
+>;
+
+/**
+ * Primary content in *NavigationItem → Primary*
+ */
+export interface NavigationItemSliceDefaultPrimary {
+  /**
+   * Label field in *NavigationItem → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_item.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Link field in *NavigationItem → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_item.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * Primary content in *NavigationItem → Items*
+ */
+export interface NavigationItemSliceDefaultItem {
+  /**
+   * Child Name field in *NavigationItem → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_item.items[].child_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  child_name: prismic.KeyTextField;
+
+  /**
+   * Child Link field in *NavigationItem → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_item.items[].child_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  child_link: prismic.LinkField;
+}
+
+/**
+ * Default variation for NavigationItem Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NavigationItemSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<NavigationItemSliceDefaultPrimary>,
+  Simplify<NavigationItemSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *NavigationItem*
+ */
+type NavigationItemSliceVariation = NavigationItemSliceDefault;
+
+/**
+ * NavigationItem Shared Slice
+ *
+ * - **API ID**: `navigation_item`
+ * - **Description**: NavigationItem
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NavigationItemSlice = prismic.SharedSlice<
+  "navigation_item",
+  NavigationItemSliceVariation
+>;
+
+/**
  * Default variation for Newsletter Slice
  *
  * - **API ID**: `default`
@@ -1237,6 +1713,199 @@ export type PortfolioCategorySlice = prismic.SharedSlice<
   PortfolioCategorySliceVariation
 >;
 
+/**
+ * Primary content in *SubMenuItem → Primary*
+ */
+export interface SubMenuItemSliceDefaultPrimary {
+  /**
+   * Label field in *SubMenuItem → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_menu_item.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Link field in *SubMenuItem → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_menu_item.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * Default variation for SubMenuItem Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SubMenuItemSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SubMenuItemSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *SubMenuItem → Primary*
+ */
+export interface SubMenuItemSliceBoxPrimary {
+  /**
+   * Label field in *SubMenuItem → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_menu_item.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Link field in *SubMenuItem → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_menu_item.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Description field in *SubMenuItem → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_menu_item.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+}
+
+/**
+ * Box variation for SubMenuItem Slice
+ *
+ * - **API ID**: `box`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SubMenuItemSliceBox = prismic.SharedSliceVariation<
+  "box",
+  Simplify<SubMenuItemSliceBoxPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *SubMenuItem → Primary*
+ */
+export interface SubMenuItemSliceButtonPrimary {
+  /**
+   * Label field in *SubMenuItem → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_menu_item.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Link field in *SubMenuItem → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_menu_item.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * Button variation for SubMenuItem Slice
+ *
+ * - **API ID**: `button`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SubMenuItemSliceButton = prismic.SharedSliceVariation<
+  "button",
+  Simplify<SubMenuItemSliceButtonPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *SubMenuItem → Primary*
+ */
+export interface SubMenuItemSliceWithIconPrimary {
+  /**
+   * Label field in *SubMenuItem → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_menu_item.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Link field in *SubMenuItem → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_menu_item.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Icon field in *SubMenuItem → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_menu_item.primary.icon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  icon: prismic.ImageField<never>;
+}
+
+/**
+ * With Icon variation for SubMenuItem Slice
+ *
+ * - **API ID**: `withIcon`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SubMenuItemSliceWithIcon = prismic.SharedSliceVariation<
+  "withIcon",
+  Simplify<SubMenuItemSliceWithIconPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *SubMenuItem*
+ */
+type SubMenuItemSliceVariation =
+  | SubMenuItemSliceDefault
+  | SubMenuItemSliceBox
+  | SubMenuItemSliceButton
+  | SubMenuItemSliceWithIcon;
+
+/**
+ * SubMenuItem Shared Slice
+ *
+ * - **API ID**: `sub_menu_item`
+ * - **Description**: SubMenuItem
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SubMenuItemSlice = prismic.SharedSlice<
+  "sub_menu_item",
+  SubMenuItemSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -1253,13 +1922,27 @@ declare module "@prismicio/client" {
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
+      LayoutDocument,
+      LayoutDocumentData,
+      LayoutDocumentDataSlices1Slice,
       NavigationDocument,
       NavigationDocumentData,
-      NavigationDocumentDataItemItem,
+      NavigationDocumentDataItemsItem,
+      NavigationDocumentDataSlicesSlice,
       PortfolioCategoryDocument,
       PortfolioCategoryDocumentData,
+      PortfolioCategoryDocumentDataItemsItem,
       PortfolioItemDocument,
       PortfolioItemDocumentData,
+      PortfolioItemDocumentDataCategoriesItem,
+      StaticPageDocument,
+      StaticPageDocumentData,
+      StaticPageDocumentDataSlicesSlice,
+      SubMenuDocument,
+      SubMenuDocumentData,
+      SubMenuDocumentDataSlicesSlice,
+      SubMenuDocumentDataSlices1Slice,
+      SubMenuDocumentDataSlices2Slice,
       TestimonialDocument,
       TestimonialDocumentData,
       AllDocumentTypes,
@@ -1290,12 +1973,27 @@ declare module "@prismicio/client" {
       GoogleReviewsSliceDefaultPrimary,
       GoogleReviewsSliceVariation,
       GoogleReviewsSliceDefault,
+      HeadingSlice,
+      HeadingSliceDefaultPrimary,
+      HeadingSliceVariation,
+      HeadingSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceFullImagePrimary,
       HeroSliceVariation,
       HeroSliceDefault,
       HeroSliceFullImage,
+      MenuItemSlice,
+      MenuItemSliceDefaultPrimary,
+      MenuItemSliceWithSubMenuPrimary,
+      MenuItemSliceVariation,
+      MenuItemSliceDefault,
+      MenuItemSliceWithSubMenu,
+      NavigationItemSlice,
+      NavigationItemSliceDefaultPrimary,
+      NavigationItemSliceDefaultItem,
+      NavigationItemSliceVariation,
+      NavigationItemSliceDefault,
       NewsletterSlice,
       NewsletterSliceVariation,
       NewsletterSliceDefault,
@@ -1303,6 +2001,16 @@ declare module "@prismicio/client" {
       PortfolioCategorySlice,
       PortfolioCategorySliceVariation,
       PortfolioCategorySliceDefault,
+      SubMenuItemSlice,
+      SubMenuItemSliceDefaultPrimary,
+      SubMenuItemSliceBoxPrimary,
+      SubMenuItemSliceButtonPrimary,
+      SubMenuItemSliceWithIconPrimary,
+      SubMenuItemSliceVariation,
+      SubMenuItemSliceDefault,
+      SubMenuItemSliceBox,
+      SubMenuItemSliceButton,
+      SubMenuItemSliceWithIcon,
     };
   }
 }

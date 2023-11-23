@@ -51,6 +51,8 @@ export default defineNuxtConfig({
     clientConfig: {
       routes: [
         { type: "homepage", path: "/" },
+        { type: "static_page", path: "/:uid" },
+
         // { type: "portfolio", path: "/portfolio" },
       ],
     },

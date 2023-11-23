@@ -10,28 +10,33 @@
     "lint:js": "eslint --ext \".ts,.vue\" --ignore-path .gitignore .",
     "lint:prettier": "prettier --check .",
     "lint": "yarn lint:js && yarn lint:prettier",
-    "lintfix": "prettier --write --list-different . && yarn lint:js --fix"
+    "lintfix": "prettier --write --list-different . && yarn lint:js --fix",
+    "server": "npx decap-server"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/i18n": "^8.0.0-rc.5",
     "@nuxtjs/prismic": "^3.1.0",
-    "@nuxtjs/tailwindcss": "^6.8.1",
-    "@slicemachine/adapter-nuxt": "^0.3.22",
-    "@typescript-eslint/parser": "^6.9.0",
-    "eslint": "^8.52.0",
+    "@nuxtjs/tailwindcss": "^6.10.1",
+    "@slicemachine/adapter-nuxt": "^0.3.26",
+    "@typescript-eslint/parser": "^6.12.0",
+    "eslint": "^8.54.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "nuxt": "^3.8.0",
-    "prettier": "^3.0.3",
-    "slice-machine-ui": "^1.19.0",
-    "typescript": "^5.2.2"
+    "handlebars": "^4.7.8",
+    "jsdom": "^22.1.0",
+    "mustache": "^4.2.0",
+    "nuxt": "^3.8.2",
+    "prettier": "^3.1.0",
+    "slice-machine-ui": "^1.21.0",
+    "turndown": "^7.1.2",
+    "typescript": "^5.3.2"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
     "@tailwindcss/container-queries": "^0.1.1",
-    "@vueuse/core": "^10.5.0",
-    "nuxt-icon": "^0.6.0",
+    "@vueuse/core": "^10.6.1",
+    "nuxt-icon": "^0.6.6",
     "pinia": "^2.1.7"
   },
   "overrides": {

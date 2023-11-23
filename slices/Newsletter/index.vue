@@ -31,10 +31,10 @@ const addTonNewsletter = () => {
         <h4 class="text-3xl font-bold text-fallow-100">
           Resta in contatto con noi
         </h4>
-        <p class="max-w-lg text-neutral-100">
+        <div class="max-w-lg text-neutral-100">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum,
           perferendis dolor sit magnam aut asperiores excepturi
-        </p>
+        </div>
         <label for="email" class="flex w-full">
           <input
             id="email"

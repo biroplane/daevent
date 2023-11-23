@@ -18,6 +18,9 @@ useHead({
       content: page.value?.data.meta_description,
     },
   ],
+  script: [
+    { src: "https://identity.netlify.com/v1/netlify-identity-widget.js" },
+  ],
 });
 </script>
 

@@ -23,7 +23,7 @@ if (ss.place?.status !== "OK") {
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
   >
-    <div class="relative min-h-[50vh]">
+    <div class="relative min-h-[50vh] py-24">
       <div class="absolute inset-0 h-full -z-10">
         <PrismicImage
           :field="slice.primary.background_image"
@@ -37,9 +37,9 @@ if (ss.place?.status !== "OK") {
           {{ slice.primary.title }}
         </h5>
         <ClientOnly>
-          <p class="mx-auto text-sm text-center text-neutral-700">
+          <div class="mx-auto text-sm text-center text-neutral-700">
             <PrismicRichText :field="slice.primary.description" />
-          </p>
+          </div>
           <div class="flex gap-8 overflow-x-auto flex-nowrap no-scrollbar">
             <div
               v-for="(review, r) in ss.place.result.reviews"

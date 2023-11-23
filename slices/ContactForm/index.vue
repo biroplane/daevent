@@ -53,80 +53,80 @@ const send = () => {
           <h3 class="text-3xl font-bold leading-8">
             {{ slice.primary.title }}
           </h3>
-          <p class="hidden py-4 lg:block">
+          <div class="hidden py-4 lg:block">
             <PrismicRichText :field="slice.primary.description" />
-          </p>
+          </div>
         </div>
         <SocialLinks />
         <!-- class="flex-row flex-wrap lg:flex-col lg:basis-full lg:px-0" -->
       </div>
       <div class="p-6 lg:p-12 lg:w-2/3">
-        <form @submit.prevent="send">
-          <fieldset>
-            <legend>Informazioni di contatto</legend>
-            <p class="mb-4 -mt-4 text-sm text-neutral-400">
-              i campi contrassegnati con <strong>*</strong> sono obbligatori
-            </p>
-            <div class="grid grid-cols-2 gap-4">
-              <input
-                v-model="form.name"
-                type="text"
-                placeholder="Nome"
-                required
-              />
-              <input
-                v-model="form.surname"
-                type="text"
-                placeholder="Cognome"
-                required
-              />
-              <input
-                v-model="form.email"
-                type="email"
-                placeholder="Email"
-                required
-              />
-              <input
-                v-model="form.phone"
-                type="tel"
-                placeholder="Telefono"
-                required
-              />
-            </div>
-          </fieldset>
-          <fieldset>
-            <legend>Di cosa hai bisogno?</legend>
-
-            <select v-model="form.reason">
-              <option
-                v-for="val in ['informazioni', 'preventivi']"
-                :key="val"
-                :value="val"
-                class="capitalize"
+        <ClientOnly>
+          <form class="max-w-lg mx-auto" @submit.prevent="send">
+            <fieldset>
+              <legend>Informazioni di contatto</legend>
+              <p class="mb-4 -mt-4 text-sm text-neutral-400">
+                i campi contrassegnati con <strong>*</strong> sono obbligatori
+              </p>
+              <div class="grid grid-cols-2 gap-4">
+                <input
+                  v-model="form.name"
+                  type="text"
+                  placeholder="Nome"
+                  required
+                />
+                <input
+                  v-model="form.surname"
+                  type="text"
+                  placeholder="Cognome"
+                  required
+                />
+                <input
+                  v-model="form.email"
+                  type="email"
+                  placeholder="Email"
+                  required
+                />
+                <input
+                  v-model="form.phone"
+                  type="tel"
+                  placeholder="Telefono"
+                  required
+                />
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Di cosa hai bisogno?</legend>
+              <select v-model="form.reason">
+                <option
+                  v-for="val in ['informazioni', 'preventivi']"
+                  :key="val"
+                  :value="val"
+                  class="capitalize"
+                >
+                  {{ val }}
+                </option>
+              </select>
+            </fieldset>
+            <fieldset>
+              <legend>Il tuo messaggio</legend>
+              <textarea v-model="form.message"></textarea>
+            </fieldset>
+            <div class="flex justify-end">
+              <button
+                class="self-end px-12 py-2 mt-6 text-white rounded bg-primary-600 hover:bg-primary-700"
               >
-                {{ val }}
-              </option>
-            </select>
-          </fieldset>
-          <fieldset>
-            <legend>Il tuo messaggio</legend>
-
-            <textarea v-model="form.message"></textarea>
-          </fieldset>
-          <div class="flex justify-end">
-            <button
-              class="self-end px-12 py-2 mt-6 text-white rounded bg-primary-600 hover:bg-primary-700"
-            >
-              Invia
-              <Icon
-                :name="
-                  isSending ? 'line-md:loading-twotone-loop' : 'prime:send'
-                "
-                size="24"
-              ></Icon>
-            </button>
-          </div>
-        </form>
+                Invia
+                <Icon
+                  :name="
+                    isSending ? 'line-md:loading-twotone-loop' : 'prime:send'
+                  "
+                  size="24"
+                ></Icon>
+              </button>
+            </div>
+          </form>
+        </ClientOnly>
       </div>
     </div>
   </section>

@@ -2,7 +2,7 @@
 defineProps({
   horizontal: { type: Boolean, default: false },
 });
-const socials = [
+const socials = ref([
   {
     link: "https://www.facebook.com",
     name: "Facebook",
@@ -27,7 +27,7 @@ const socials = [
     icon: "cib:tiktok",
     alt: "Facebook",
   },
-];
+]);
 </script>
 <template>
   <div class="w-full">
@@ -35,9 +35,9 @@ const socials = [
       <li v-for="social in socials" :key="social.link">
         <a class="flex items-baseline gap-2" :href="social.link">
           <Icon :name="social.icon" size="16" />
-          <p class="hover:underline">
+          <cite class="hover:underline">
             {{ social.name }}
-          </p>
+          </cite>
         </a>
       </li>
     </ul>
