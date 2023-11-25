@@ -175,44 +175,57 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 /**
- * Item in *Navigation → Item*
+ * Item in *Navigation → Items*
  */
-export interface NavigationDocumentDataItemItem {
+export interface NavigationDocumentDataItemsItem {
   /**
-   * Label field in *Navigation → Item*
+   * Label field in *Navigation → Items*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.item[].label
+   * - **API ID Path**: navigation.items[].label
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   label: prismic.KeyTextField;
 
   /**
-   * Link field in *Navigation → Item*
+   * Link field in *Navigation → Items*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.item[].link
+   * - **API ID Path**: navigation.items[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   link: prismic.LinkField;
 }
+
+type NavigationDocumentDataSlicesSlice = NavigationItemSlice;
 
 /**
  * Content for Navigation documents
  */
 interface NavigationDocumentData {
   /**
-   * Item field in *Navigation*
+   * Items field in *Navigation*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.item[]
+   * - **API ID Path**: navigation.items[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#group
    */
-  item: prismic.GroupField<Simplify<NavigationDocumentDataItemItem>>;
+  items: prismic.GroupField<Simplify<NavigationDocumentDataItemsItem>>;
+
+  /**
+   * Slice Zone field in *Navigation*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<NavigationDocumentDataSlicesSlice>;
 }
 
 /**
@@ -230,6 +243,23 @@ export type NavigationDocument<Lang extends string = string> =
     "navigation",
     Lang
   >;
+
+/**
+ * Item in *Portfolio Category → Items*
+ */
+export interface PortfolioCategoryDocumentDataItemsItem {
+  /**
+   * Prtfolio Item field in *Portfolio Category → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_category.items[].portfolio_item
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  portfolio_item: prismic.ContentRelationshipField<"portfolio_item">;
+}
+
+type PortfolioCategoryDocumentDataSlicesSlice = AlternateGridSlice | HeroSlice;
 
 /**
  * Content for Portfolio Category documents
@@ -267,6 +297,28 @@ interface PortfolioCategoryDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   portfolio_item: prismic.ContentRelationshipField<"portfolio_item">;
+
+  /**
+   * Items field in *Portfolio Category*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_category.items[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  items: prismic.GroupField<Simplify<PortfolioCategoryDocumentDataItemsItem>>;
+
+  /**
+   * Slice Zone field in *Portfolio Category*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_category.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<PortfolioCategoryDocumentDataSlicesSlice>;
 }
 
 /**
@@ -284,6 +336,38 @@ export type PortfolioCategoryDocument<Lang extends string = string> =
     "portfolio_category",
     Lang
   >;
+
+/**
+ * Item in *Portfolio Item → Categories*
+ */
+export interface PortfolioItemDocumentDataCategoriesItem {
+  /**
+   * Portfolio Category field in *Portfolio Item → Categories*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_item.categories[].portfolio_category
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  portfolio_category: prismic.ContentRelationshipField<"portfolio_category">;
+}
+
+/**
+ * Item in *Portfolio Item → Skills*
+ */
+export interface PortfolioItemDocumentDataSkillsItem {
+  /**
+   * Portfolio Skill field in *Portfolio Item → Skills*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_item.skills[].portfolio_skill
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  portfolio_skill: prismic.ContentRelationshipField<"portfolio_skills">;
+}
+
+type PortfolioItemDocumentDataSlicesSlice = PortfolioCategorySlice;
 
 /**
  * Content for Portfolio Item documents
@@ -321,6 +405,41 @@ interface PortfolioItemDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>;
+
+  /**
+   * Categories field in *Portfolio Item*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_item.categories[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  categories: prismic.GroupField<
+    Simplify<PortfolioItemDocumentDataCategoriesItem>
+  >;
+
+  /**
+   * Skills field in *Portfolio Item*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_item.skills[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  skills: prismic.GroupField<Simplify<PortfolioItemDocumentDataSkillsItem>>;
+
+  /**
+   * Slice Zone field in *Portfolio Item*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_item.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<PortfolioItemDocumentDataSlicesSlice>;
 }
 
 /**
@@ -336,6 +455,185 @@ export type PortfolioItemDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
     Simplify<PortfolioItemDocumentData>,
     "portfolio_item",
+    Lang
+  >;
+
+/**
+ * Content for Portfolio Skills documents
+ */
+interface PortfolioSkillsDocumentData {
+  /**
+   * Title field in *Portfolio Skills*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_skills.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Body field in *Portfolio Skills*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_skills.body
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+}
+
+/**
+ * Portfolio Skills document from Prismic
+ *
+ * - **API ID**: `portfolio_skills`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PortfolioSkillsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<PortfolioSkillsDocumentData>,
+    "portfolio_skills",
+    Lang
+  >;
+
+type SinglePortfolioCategoryDocumentDataSlicesSlice =
+  | CustomerLogosSlice
+  | HeroSlice
+  | NewsletterSlice;
+
+/**
+ * Content for Single Portfolio Category documents
+ */
+interface SinglePortfolioCategoryDocumentData {
+  /**
+   * Portfolio Category field in *Single Portfolio Category*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: single_portfolio_category.portfolio_category
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  portfolio_category: prismic.ContentRelationshipField<"portfolio_category">;
+
+  /**
+   * Slice Zone field in *Single Portfolio Category*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: single_portfolio_category.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<SinglePortfolioCategoryDocumentDataSlicesSlice> /**
+   * Meta Description field in *Single Portfolio Category*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: single_portfolio_category.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Single Portfolio Category*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: single_portfolio_category.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Single Portfolio Category*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: single_portfolio_category.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Single Portfolio Category document from Prismic
+ *
+ * - **API ID**: `single_portfolio_category`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SinglePortfolioCategoryDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<SinglePortfolioCategoryDocumentData>,
+    "single_portfolio_category",
+    Lang
+  >;
+
+/**
+ * Item in *Sub Navigation Item → items*
+ */
+export interface SubNavigationItemDocumentDataItemsItem {
+  /**
+   * Label field in *Sub Navigation Item → items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_navigation_item.items[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Link field in *Sub Navigation Item → items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_navigation_item.items[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * Content for Sub Navigation Item documents
+ */
+interface SubNavigationItemDocumentData {
+  /**
+   * items field in *Sub Navigation Item*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sub_navigation_item.items[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  items: prismic.GroupField<Simplify<SubNavigationItemDocumentDataItemsItem>>;
+}
+
+/**
+ * Sub Navigation Item document from Prismic
+ *
+ * - **API ID**: `sub_navigation_item`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SubNavigationItemDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<SubNavigationItemDocumentData>,
+    "sub_navigation_item",
     Lang
   >;
 
@@ -410,6 +708,9 @@ export type AllDocumentTypes =
   | NavigationDocument
   | PortfolioCategoryDocument
   | PortfolioItemDocument
+  | PortfolioSkillsDocument
+  | SinglePortfolioCategoryDocument
+  | SubNavigationItemDocument
   | TestimonialDocument;
 
 /**
@@ -1165,6 +1466,116 @@ type HeroSliceVariation = HeroSliceDefault | HeroSliceFullImage;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Primary content in *NavigationItem → Primary*
+ */
+export interface NavigationItemSliceDefaultPrimary {
+  /**
+   * Label field in *NavigationItem → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_item.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Link field in *NavigationItem → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_item.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * Single variation for NavigationItem Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NavigationItemSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<NavigationItemSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *NavigationItem → Primary*
+ */
+export interface NavigationItemSliceNestedPrimary {
+  /**
+   * Label field in *NavigationItem → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_item.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *NavigationItem → Items*
+ */
+export interface NavigationItemSliceNestedItem {
+  /**
+   * Child Name field in *NavigationItem → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_item.items[].child_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  child_name: prismic.KeyTextField;
+
+  /**
+   * Child Link field in *NavigationItem → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_item.items[].child_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  child_link: prismic.LinkField;
+}
+
+/**
+ * Nested variation for NavigationItem Slice
+ *
+ * - **API ID**: `nested`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NavigationItemSliceNested = prismic.SharedSliceVariation<
+  "nested",
+  Simplify<NavigationItemSliceNestedPrimary>,
+  Simplify<NavigationItemSliceNestedItem>
+>;
+
+/**
+ * Slice variation for *NavigationItem*
+ */
+type NavigationItemSliceVariation =
+  | NavigationItemSliceDefault
+  | NavigationItemSliceNested;
+
+/**
+ * NavigationItem Shared Slice
+ *
+ * - **API ID**: `navigation_item`
+ * - **Description**: NavigationItem
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NavigationItemSlice = prismic.SharedSlice<
+  "navigation_item",
+  NavigationItemSliceVariation
+>;
+
+/**
  * Default variation for Newsletter Slice
  *
  * - **API ID**: `default`
@@ -1255,11 +1666,25 @@ declare module "@prismicio/client" {
       HomepageDocumentDataSlicesSlice,
       NavigationDocument,
       NavigationDocumentData,
-      NavigationDocumentDataItemItem,
+      NavigationDocumentDataItemsItem,
+      NavigationDocumentDataSlicesSlice,
       PortfolioCategoryDocument,
       PortfolioCategoryDocumentData,
+      PortfolioCategoryDocumentDataItemsItem,
+      PortfolioCategoryDocumentDataSlicesSlice,
       PortfolioItemDocument,
       PortfolioItemDocumentData,
+      PortfolioItemDocumentDataCategoriesItem,
+      PortfolioItemDocumentDataSkillsItem,
+      PortfolioItemDocumentDataSlicesSlice,
+      PortfolioSkillsDocument,
+      PortfolioSkillsDocumentData,
+      SinglePortfolioCategoryDocument,
+      SinglePortfolioCategoryDocumentData,
+      SinglePortfolioCategoryDocumentDataSlicesSlice,
+      SubNavigationItemDocument,
+      SubNavigationItemDocumentData,
+      SubNavigationItemDocumentDataItemsItem,
       TestimonialDocument,
       TestimonialDocumentData,
       AllDocumentTypes,
@@ -1296,6 +1721,13 @@ declare module "@prismicio/client" {
       HeroSliceVariation,
       HeroSliceDefault,
       HeroSliceFullImage,
+      NavigationItemSlice,
+      NavigationItemSliceDefaultPrimary,
+      NavigationItemSliceNestedPrimary,
+      NavigationItemSliceNestedItem,
+      NavigationItemSliceVariation,
+      NavigationItemSliceDefault,
+      NavigationItemSliceNested,
       NewsletterSlice,
       NewsletterSliceVariation,
       NewsletterSliceDefault,

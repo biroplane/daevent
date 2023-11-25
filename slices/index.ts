@@ -18,6 +18,9 @@ export const components = defineSliceZoneComponents({
     () => import("./GoogleReviews/index.vue")
   ),
   hero: defineAsyncComponent(() => import("./Hero/index.vue")),
+  navigation_item: defineAsyncComponent(
+    () => import("./NavigationItem/index.vue")
+  ),
   newsletter: defineAsyncComponent(() => import("./Newsletter/index.vue")),
   portfolio_category: defineAsyncComponent(
     () => import("./PortfolioCategory/index.vue")

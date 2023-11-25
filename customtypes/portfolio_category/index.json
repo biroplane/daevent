@@ -35,6 +35,36 @@
           "select": "document",
           "customtypes": ["portfolio_item"]
         }
+      },
+      "items": {
+        "type": "Group",
+        "config": {
+          "label": "Items",
+          "fields": {
+            "portfolio_item": {
+              "type": "Link",
+              "config": {
+                "label": "Prtfolio Item",
+                "select": "document",
+                "customtypes": ["portfolio_item"]
+              }
+            }
+          }
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "alternate_grid": {
+              "type": "SharedSlice"
+            },
+            "hero": {
+              "type": "SharedSlice"
+            }
+          }
+        }
       }
     }
   }

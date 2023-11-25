@@ -1,0 +1,68 @@
+{
+  "id": "navigation_item",
+  "type": "SharedSlice",
+  "name": "NavigationItem",
+  "description": "NavigationItem",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Single",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "label": {
+          "type": "Text",
+          "config": {
+            "label": "Label",
+            "placeholder": ""
+          }
+        },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "Link",
+            "placeholder": "",
+            "select": null
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "nested",
+      "name": "Nested",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "label": {
+          "type": "Text",
+          "config": {
+            "label": "Label",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {
+        "child_name": {
+          "type": "Text",
+          "config": {
+            "label": "Child Name",
+            "placeholder": ""
+          }
+        },
+        "child_link": {
+          "type": "Link",
+          "config": {
+            "label": "Child Link",
+            "placeholder": "",
+            "select": null
+          }
+        }
+      }
+    }
+  ]
+}

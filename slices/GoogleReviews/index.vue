@@ -23,7 +23,7 @@ if (ss.place?.status !== "OK") {
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
   >
-    <div class="relative min-h-[50vh]">
+    <div class="relative min-h-[50vh] py-24">
       <div class="absolute inset-0 h-full -z-10">
         <PrismicImage
           :field="slice.primary.background_image"
@@ -44,7 +44,7 @@ if (ss.place?.status !== "OK") {
             <div
               v-for="(review, r) in ss.place.result.reviews"
               :key="r"
-              class="flex-grow-0 flex-shrink-0 w-1/3 basis-1/3 card"
+              class="flex-grow-0 flex-shrink-0 w-1/3 basis-1/3 card bg-white text-neutral-600"
             >
               <div class="flex items-center gap-4">
                 <h6
@@ -63,7 +63,7 @@ if (ss.place?.status !== "OK") {
                 />
               </div>
               <p
-                class="overflow-y-auto text-xs italic leading-6 text-neutral-100 max-h-48 no-scrollbar"
+                class="overflow-y-auto text-xs italic leading-6 text-neutral-400 max-h-48 no-scrollbar"
               >
                 {{ review.text }}
               </p>

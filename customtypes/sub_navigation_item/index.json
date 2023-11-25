@@ -1,15 +1,21 @@
 {
-  "id": "navigation",
-  "label": "Navigation",
+  "id": "sub_navigation_item",
+  "label": "Sub Navigation Item",
   "format": "custom",
-  "repeatable": false,
+  "repeatable": true,
   "status": true,
   "json": {
     "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
       "items": {
         "type": "Group",
         "config": {
-          "label": "Items",
+          "label": "items",
           "fields": {
             "label": {
               "type": "Text",
@@ -25,17 +31,6 @@
                 "placeholder": "",
                 "select": null
               }
-            }
-          }
-        }
-      },
-      "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
-        "config": {
-          "choices": {
-            "navigation_item": {
-              "type": "SharedSlice"
             }
           }
         }

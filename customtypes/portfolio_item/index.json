@@ -35,6 +35,49 @@
           "constraint": {},
           "thumbnails": []
         }
+      },
+      "categories": {
+        "type": "Group",
+        "config": {
+          "label": "Categories",
+          "fields": {
+            "portfolio_category": {
+              "type": "Link",
+              "config": {
+                "label": "Portfolio Category",
+                "select": "document",
+                "customtypes": ["portfolio_category"]
+              }
+            }
+          }
+        }
+      },
+      "skills": {
+        "type": "Group",
+        "config": {
+          "label": "Skills",
+          "fields": {
+            "portfolio_skill": {
+              "type": "Link",
+              "config": {
+                "label": "Portfolio Skill",
+                "select": "document",
+                "customtypes": ["portfolio_skills"]
+              }
+            }
+          }
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "portfolio_category": {
+              "type": "SharedSlice"
+            }
+          }
+        }
       }
     }
   }
