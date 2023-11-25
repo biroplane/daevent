@@ -1,0 +1,64 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Excepteur ut incididunt ipsum anim cupidatat. Ullamco proident fugiat irure pariatur voluptate id exercitation ipsum aliquip aliquip."
+						}
+					}
+				]
+			},
+			"title": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Alex C"
+			},
+			"image": {
+				"origin": {
+					"id": "QeUZxlo4Tww",
+					"url": "https://images.unsplash.com/photo-1659134190838-eecea21157b8?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxNHx8ZGolMjB2aW55bHxlbnwwfHx8fDE3MDA5MTU1NTR8MA&ixlib=rb-4.0.3&q=85",
+					"width": 2834,
+					"height": 2117
+				},
+				"url": "https://images.unsplash.com/photo-1659134190838-eecea21157b8?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxNHx8ZGolMjB2aW55bHxlbnwwfHx8fDE3MDA5MTU1NTR8MA&ixlib=rb-4.0.3&q=85",
+				"width": 2834,
+				"height": 2117,
+				"edit": {
+					"background": "transparent",
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				"credits": null,
+				"alt": "a man wearing headphones and playing a record",
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"portfolio_skill",
+						{
+							"__TYPE__": "LinkContent",
+							"value": {
+								"__TYPE__": "DocumentLink",
+								"id": "mock_document_id"
+							}
+						}
+					]
+				]
+			}
+		]
+	}
+]

@@ -6,9 +6,11 @@ const route = useRoute();
 const { data: page } = useAsyncData(
   `[portfolio_category-uid-${route.params.uid}]`,
   () =>
-    prismic.client.getByUID("portfolio_category", route.params.uid as string)
+    prismic.client.getByUID("portfolio_category", route.params.uid as string, {
+      fetchLinks: "portfolio_item",
+    })
 );
-console.log("Page data ", page);
+
 useHead({
   title: page.value?.data.meta_title,
   meta: [
@@ -21,9 +23,13 @@ useHead({
 </script>
 
 <template>
-  <SliceZone
-    wrapper="main"
-    :slices="page?.data.slices ?? []"
-    :components="components"
-  />
+  <div class="pt-24">
+    <pre>{{ page?.data.items }}</pre>
+    <SliceZone
+      wrapper="main"
+      :slices="page?.data.slices ?? []"
+      :components="components"
+      class="py-24"
+    />
+  </div>
 </template>

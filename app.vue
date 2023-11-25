@@ -9,7 +9,7 @@
 
 <style lang="postcss">
 body {
-  @apply font-body text-white bg-black;
+  @apply font-body;
 }
 /* 
 */

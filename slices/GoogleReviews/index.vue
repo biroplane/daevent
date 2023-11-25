@@ -44,7 +44,7 @@ if (ss.place?.status !== "OK") {
             <div
               v-for="(review, r) in ss.place.result.reviews"
               :key="r"
-              class="flex-grow-0 flex-shrink-0 w-1/3 basis-1/3 card bg-white text-neutral-600"
+              class="flex-grow-0 flex-shrink-0 w-1/3 bg-white basis-1/3 card text-neutral-600"
             >
               <div class="flex items-center gap-4">
                 <h6

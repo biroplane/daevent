@@ -7,6 +7,7 @@ export const components = defineSliceZoneComponents({
   alternate_grid: defineAsyncComponent(
     () => import("./AlternateGrid/index.vue")
   ),
+  artist_card: defineAsyncComponent(() => import("./ArtistCard/index.vue")),
   call_to_action: defineAsyncComponent(
     () => import("./CallToAction/index.vue")
   ),

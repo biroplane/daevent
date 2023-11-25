@@ -52,7 +52,7 @@ console.log("Nav", navigation.value);
     <li
       v-for="(item, i) in navigation?.data.slices"
       :key="i"
-      class="group relative text-neutral-400"
+      class="relative text-black group"
     >
       <PrismicLink
         v-if="item.variation === 'default'"
@@ -65,9 +65,13 @@ console.log("Nav", navigation.value);
 
         <ul
           v-if="item.slice_type == 'navigation_item'"
-          class="absolute transition-all opacity-0 group-hover:opacity-100 -translate-y-4 group-hover:translate-y-0 group-hover:flex bg-white p-6 gap-4 flex-col shadow-md rounded-md"
+          class="absolute flex-col gap-4 p-6 transition-all -translate-y-4 bg-white rounded-md shadow-md opacity-0 group-hover:opacity-100 group-hover:translate-y-0 group-hover:flex"
         >
-          <li v-for="(ni, n) in item.items" :key="n" class="hover:text-primary">
+          <li
+            v-for="(ni, n) in item.items"
+            :key="n"
+            class="transition-colors duration-300 hover:text-primary"
+          >
             <PrismicLink
               v-if="isFilled.link(ni.child_link)"
               :field="ni.child_link"

@@ -318,7 +318,27 @@ interface PortfolioCategoryDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<PortfolioCategoryDocumentDataSlicesSlice>;
+  slices: prismic.SliceZone<PortfolioCategoryDocumentDataSlicesSlice> /**
+   * meta_title field in *Portfolio Category*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_category.meta_title
+   * - **Tab**: Seo & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Portfolio Category*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_category.meta_description
+   * - **Tab**: Seo & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
 }
 
 /**
@@ -439,7 +459,38 @@ interface PortfolioItemDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<PortfolioItemDocumentDataSlicesSlice>;
+  slices: prismic.SliceZone<PortfolioItemDocumentDataSlicesSlice> /**
+   * Meta Title field in *Portfolio Item*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_item.meta_title
+   * - **Tab**: Seo & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Portfolio Item*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_item.meta_description
+   * - **Tab**: Seo & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Portfolio Item*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_item.meta_image
+   * - **Tab**: Seo & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
 }
 
 /**
@@ -457,6 +508,8 @@ export type PortfolioItemDocument<Lang extends string = string> =
     "portfolio_item",
     Lang
   >;
+
+type PortfolioSkillsDocumentDataSlicesSlice = never;
 
 /**
  * Content for Portfolio Skills documents
@@ -483,6 +536,17 @@ interface PortfolioSkillsDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   body: prismic.RichTextField;
+
+  /**
+   * `slices` field in *Portfolio Skills*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_skills.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<PortfolioSkillsDocumentDataSlicesSlice>;
 }
 
 /**
@@ -896,6 +960,86 @@ type AlternateGridSliceVariation =
 export type AlternateGridSlice = prismic.SharedSlice<
   "alternate_grid",
   AlternateGridSliceVariation
+>;
+
+/**
+ * Primary content in *ArtistCard → Primary*
+ */
+export interface ArtistCardSliceDefaultPrimary {
+  /**
+   * Title field in *ArtistCard → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artist_card.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Body field in *ArtistCard → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artist_card.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Image field in *ArtistCard → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artist_card.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *ArtistCard → Items*
+ */
+export interface ArtistCardSliceDefaultItem {
+  /**
+   * Portfolio Skill field in *ArtistCard → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artist_card.items[].portfolio_skill
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  portfolio_skill: prismic.ContentRelationshipField<"portfolio_skills">;
+}
+
+/**
+ * Default variation for ArtistCard Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ArtistCardSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ArtistCardSliceDefaultPrimary>,
+  Simplify<ArtistCardSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *ArtistCard*
+ */
+type ArtistCardSliceVariation = ArtistCardSliceDefault;
+
+/**
+ * ArtistCard Shared Slice
+ *
+ * - **API ID**: `artist_card`
+ * - **Description**: ArtistCard
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ArtistCardSlice = prismic.SharedSlice<
+  "artist_card",
+  ArtistCardSliceVariation
 >;
 
 /**
@@ -1679,6 +1823,7 @@ declare module "@prismicio/client" {
       PortfolioItemDocumentDataSlicesSlice,
       PortfolioSkillsDocument,
       PortfolioSkillsDocumentData,
+      PortfolioSkillsDocumentDataSlicesSlice,
       SinglePortfolioCategoryDocument,
       SinglePortfolioCategoryDocumentData,
       SinglePortfolioCategoryDocumentDataSlicesSlice,
@@ -1696,6 +1841,11 @@ declare module "@prismicio/client" {
       AlternateGridSliceVariation,
       AlternateGridSliceDefault,
       AlternateGridSliceImageRight,
+      ArtistCardSlice,
+      ArtistCardSliceDefaultPrimary,
+      ArtistCardSliceDefaultItem,
+      ArtistCardSliceVariation,
+      ArtistCardSliceDefault,
       CallToActionSlice,
       CallToActionSliceDefaultPrimary,
       CallToActionSliceAlignLeftPrimary,

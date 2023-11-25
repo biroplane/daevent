@@ -1,7 +1,7 @@
 {
   "id": "portfolio_category",
   "label": "Portfolio Category",
-  "format": "custom",
+  "format": "page",
   "repeatable": true,
   "status": true,
   "json": {
@@ -64,6 +64,22 @@
               "type": "SharedSlice"
             }
           }
+        }
+      }
+    },
+    "Seo & Metadata": {
+      "meta_title": {
+        "type": "Text",
+        "config": {
+          "label": "meta_title",
+          "placeholder": ""
+        }
+      },
+      "meta_description": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Description",
+          "placeholder": ""
         }
       }
     }
