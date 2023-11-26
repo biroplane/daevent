@@ -37,18 +37,7 @@
           }
         }
       },
-      "items": {
-        "portfolio_skill": {
-          "type": "Link",
-          "config": {
-            "label": "Portfolio Skill",
-            "select": "document",
-            "customtypes": [
-              "portfolio_skills"
-            ]
-          }
-        }
-      }
+      "items": {}
     }
   ]
 }

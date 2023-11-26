@@ -53,6 +53,8 @@ export default defineNuxtConfig({
         { type: "homepage", path: "/" },
         { type: "portfolio_item", path: "/portfolio-item/:uid" },
         { type: "portfolio_category", path: "/portfolio-category/:uid" },
+        { type: "port_category", path: "/categoria-portfolio/:uid" },
+        { type: "artist", path: "/artist/:uid" },
       ],
     },
   },

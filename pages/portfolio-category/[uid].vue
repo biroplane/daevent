@@ -7,7 +7,7 @@ const { data: page } = useAsyncData(
   `[portfolio_category-uid-${route.params.uid}]`,
   () =>
     prismic.client.getByUID("portfolio_category", route.params.uid as string, {
-      fetchLinks: "portfolio_item",
+      fetchLinks: "items.portfolio_item",
     })
 );
 
@@ -25,6 +25,11 @@ useHead({
 <template>
   <div class="pt-24">
     <pre>{{ page?.data.items }}</pre>
+    <ul>
+      <li v-for="(item, i) in page?.data.items" :key="i">
+        {{ item.portfolio_item }}
+      </li>
+    </ul>
     <SliceZone
       wrapper="main"
       :slices="page?.data.slices ?? []"

@@ -4,6 +4,73 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type ArtistDocumentDataSlicesSlice =
+  | NewsletterSlice
+  | CustomerLogosSlice
+  | CallToActionSlice
+  | ArtistCardSlice;
+
+/**
+ * Content for Artist documents
+ */
+interface ArtistDocumentData {
+  /**
+   * Name field in *Artist*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artist.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Bio field in *Artist*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artist.bio
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  bio: prismic.RichTextField;
+
+  /**
+   * Image field in *Artist*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artist.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Slice Zone field in *Artist*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artist.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ArtistDocumentDataSlicesSlice>;
+}
+
+/**
+ * Artist document from Prismic
+ *
+ * - **API ID**: `artist`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ArtistDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<ArtistDocumentData>, "artist", Lang>;
+
 type BlogPostDocumentDataSlicesSlice = never;
 
 /**
@@ -241,6 +308,139 @@ export type NavigationDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<
     Simplify<NavigationDocumentData>,
     "navigation",
+    Lang
+  >;
+
+/**
+ * Item in *Port category → Portfolio Items*
+ */
+export interface PortCategoryDocumentDataPortfolioItemsItem {
+  /**
+   * item field in *Port category → Portfolio Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: port_category.portfolio_items[].item
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  item: prismic.ContentRelationshipField<"portfolio_item">;
+}
+
+type PortCategoryDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Port category documents
+ */
+interface PortCategoryDocumentData {
+  /**
+   * title field in *Port category*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: port_category.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Portfolio Items field in *Port category*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: port_category.portfolio_items[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  portfolio_items: prismic.GroupField<
+    Simplify<PortCategoryDocumentDataPortfolioItemsItem>
+  >;
+
+  /**
+   * Slice Zone field in *Port category*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: port_category.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<PortCategoryDocumentDataSlicesSlice>;
+}
+
+/**
+ * Port category document from Prismic
+ *
+ * - **API ID**: `port_category`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PortCategoryDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<PortCategoryDocumentData>,
+    "port_category",
+    Lang
+  >;
+
+/**
+ * Item in *Port Item → Port Category*
+ */
+export interface PortItemDocumentDataPortCategoryItem {
+  /**
+   * Category field in *Port Item → Port Category*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: port_item.port_category[].category
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  category: prismic.ContentRelationshipField<"port_category">;
+}
+
+/**
+ * Content for Port Item documents
+ */
+interface PortItemDocumentData {
+  /**
+   * Title field in *Port Item*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: port_item.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Port Category field in *Port Item*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: port_item.port_category[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  port_category: prismic.GroupField<
+    Simplify<PortItemDocumentDataPortCategoryItem>
+  >;
+}
+
+/**
+ * Port Item document from Prismic
+ *
+ * - **API ID**: `port_item`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PortItemDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<PortItemDocumentData>,
+    "port_item",
     Lang
   >;
 
@@ -767,9 +967,12 @@ export type TestimonialDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | ArtistDocument
   | BlogPostDocument
   | HomepageDocument
   | NavigationDocument
+  | PortCategoryDocument
+  | PortItemDocument
   | PortfolioCategoryDocument
   | PortfolioItemDocument
   | PortfolioSkillsDocument
@@ -998,21 +1201,6 @@ export interface ArtistCardSliceDefaultPrimary {
 }
 
 /**
- * Primary content in *ArtistCard → Items*
- */
-export interface ArtistCardSliceDefaultItem {
-  /**
-   * Portfolio Skill field in *ArtistCard → Items*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: artist_card.items[].portfolio_skill
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  portfolio_skill: prismic.ContentRelationshipField<"portfolio_skills">;
-}
-
-/**
  * Default variation for ArtistCard Slice
  *
  * - **API ID**: `default`
@@ -1022,7 +1210,7 @@ export interface ArtistCardSliceDefaultItem {
 export type ArtistCardSliceDefault = prismic.SharedSliceVariation<
   "default",
   Simplify<ArtistCardSliceDefaultPrimary>,
-  Simplify<ArtistCardSliceDefaultItem>
+  never
 >;
 
 /**
@@ -1802,6 +1990,9 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      ArtistDocument,
+      ArtistDocumentData,
+      ArtistDocumentDataSlicesSlice,
       BlogPostDocument,
       BlogPostDocumentData,
       BlogPostDocumentDataSlicesSlice,
@@ -1812,6 +2003,13 @@ declare module "@prismicio/client" {
       NavigationDocumentData,
       NavigationDocumentDataItemsItem,
       NavigationDocumentDataSlicesSlice,
+      PortCategoryDocument,
+      PortCategoryDocumentData,
+      PortCategoryDocumentDataPortfolioItemsItem,
+      PortCategoryDocumentDataSlicesSlice,
+      PortItemDocument,
+      PortItemDocumentData,
+      PortItemDocumentDataPortCategoryItem,
       PortfolioCategoryDocument,
       PortfolioCategoryDocumentData,
       PortfolioCategoryDocumentDataItemsItem,
@@ -1843,7 +2041,6 @@ declare module "@prismicio/client" {
       AlternateGridSliceImageRight,
       ArtistCardSlice,
       ArtistCardSliceDefaultPrimary,
-      ArtistCardSliceDefaultItem,
       ArtistCardSliceVariation,
       ArtistCardSliceDefault,
       CallToActionSlice,
