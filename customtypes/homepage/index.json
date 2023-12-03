@@ -11,7 +11,16 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "hero": {
+            "category_grid": {
+              "type": "SharedSlice"
+            },
+            "newsletter": {
+              "type": "SharedSlice"
+            },
+            "google_reviews": {
+              "type": "SharedSlice"
+            },
+            "contact_form": {
               "type": "SharedSlice"
             },
             "alternate_grid": {
@@ -20,16 +29,7 @@
             "customer_logos": {
               "type": "SharedSlice"
             },
-            "call_to_action": {
-              "type": "SharedSlice"
-            },
-            "google_reviews": {
-              "type": "SharedSlice"
-            },
-            "newsletter": {
-              "type": "SharedSlice"
-            },
-            "contact_form": {
+            "hero": {
               "type": "SharedSlice"
             }
           }

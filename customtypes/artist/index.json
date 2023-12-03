@@ -25,7 +25,7 @@
           "label": "Bio",
           "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },
       "image": {
@@ -36,22 +36,33 @@
           "thumbnails": []
         }
       },
-      "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
+      "skills": {
+        "type": "Group",
         "config": {
-          "choices": {
-            "newsletter": {
-              "type": "SharedSlice"
-            },
-            "customer_logos": {
-              "type": "SharedSlice"
-            },
-            "call_to_action": {
-              "type": "SharedSlice"
-            },
-            "artist_card": {
-              "type": "SharedSlice"
+          "label": "Skills",
+          "fields": {
+            "skill": {
+              "type": "Text",
+              "config": {
+                "label": "Skill",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "categories": {
+        "type": "Group",
+        "config": {
+          "label": "Categories",
+          "fields": {
+            "category": {
+              "type": "Link",
+              "config": {
+                "label": "Category",
+                "select": "document",
+                "customtypes": ["category"]
+              }
             }
           }
         }

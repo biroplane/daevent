@@ -1,68 +1,54 @@
 {
   "id": "portfolio_item",
   "label": "Portfolio Item",
-  "format": "page",
+  "format": "custom",
   "repeatable": true,
   "status": true,
   "json": {
     "Main": {
+      "uid": {
+        "config": {
+          "label": "UID",
+          "useAsTitle": true
+        },
+        "type": "UID"
+      },
       "title": {
         "type": "Text",
         "config": {
           "label": "Title",
-          "placeholder": ""
+          "placeholder": "",
+          "useAsTitle": true
         }
       },
-      "uid": {
-        "config": {
-          "label": "UID"
-        },
-        "type": "UID"
-      },
-      "body": {
+      "description": {
         "type": "StructuredText",
         "config": {
-          "label": "Body",
+          "label": "Description",
           "placeholder": "",
           "allowTargetBlank": true,
-          "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },
-      "image": {
+      "featured_image": {
         "type": "Image",
         "config": {
-          "label": "Image",
+          "label": "Featured Image",
           "constraint": {},
           "thumbnails": []
         }
       },
-      "categories": {
+      "artists": {
         "type": "Group",
         "config": {
-          "label": "Categories",
+          "label": "Artists",
           "fields": {
-            "portfolio_category": {
+            "artist": {
               "type": "Link",
               "config": {
-                "label": "Portfolio Category",
+                "label": "Artist",
                 "select": "document",
-                "customtypes": ["portfolio_category"]
-              }
-            }
-          }
-        }
-      },
-      "skills": {
-        "type": "Group",
-        "config": {
-          "label": "Skills",
-          "fields": {
-            "portfolio_skill": {
-              "type": "Link",
-              "config": {
-                "label": "Portfolio Skill",
-                "select": "document",
-                "customtypes": ["portfolio_skills"]
+                "customtypes": ["artist"]
               }
             }
           }
@@ -73,34 +59,10 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "portfolio_category": {
+            "artist_card": {
               "type": "SharedSlice"
             }
           }
-        }
-      }
-    },
-    "Seo & Metadata": {
-      "meta_title": {
-        "type": "Text",
-        "config": {
-          "label": "Meta Title",
-          "placeholder": ""
-        }
-      },
-      "meta_description": {
-        "type": "Text",
-        "config": {
-          "label": "Meta Description",
-          "placeholder": ""
-        }
-      },
-      "meta_image": {
-        "type": "Image",
-        "config": {
-          "label": "Meta Image",
-          "constraint": {},
-          "thumbnails": []
         }
       }
     }

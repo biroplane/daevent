@@ -6,35 +6,12 @@
   "status": true,
   "json": {
     "Main": {
-      "items": {
-        "type": "Group",
-        "config": {
-          "label": "Items",
-          "fields": {
-            "label": {
-              "type": "Text",
-              "config": {
-                "label": "Label",
-                "placeholder": ""
-              }
-            },
-            "link": {
-              "type": "Link",
-              "config": {
-                "label": "Link",
-                "placeholder": "",
-                "select": null
-              }
-            }
-          }
-        }
-      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "navigation_item": {
+            "menu_item": {
               "type": "SharedSlice"
             }
           }

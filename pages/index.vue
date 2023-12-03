@@ -9,6 +9,8 @@ const { data: page } = useAsyncData(
     prismic.client.getSingle("homepage", { lang: localeProperties.value.iso }),
   { watch: [locale] }
 );
+const similar = prismic.filter.similar(page.value?.id as string, 5);
+console.log("Similar", similar);
 
 useHead({
   title: page.value?.data.meta_title,

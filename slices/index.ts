@@ -8,22 +8,30 @@ export const components = defineSliceZoneComponents({
     () => import("./AlternateGrid/index.vue")
   ),
   artist_card: defineAsyncComponent(() => import("./ArtistCard/index.vue")),
+  blog_posts: defineAsyncComponent(() => import("./BlogPosts/index.vue")),
   call_to_action: defineAsyncComponent(
     () => import("./CallToAction/index.vue")
   ),
+  category_grid: defineAsyncComponent(() => import("./CategoryGrid/index.vue")),
   contact_form: defineAsyncComponent(() => import("./ContactForm/index.vue")),
   customer_logos: defineAsyncComponent(
     () => import("./CustomerLogos/index.vue")
   ),
+  gallery: defineAsyncComponent(() => import("./Gallery/index.vue")),
   google_reviews: defineAsyncComponent(
     () => import("./GoogleReviews/index.vue")
   ),
+  heading: defineAsyncComponent(() => import("./Heading/index.vue")),
   hero: defineAsyncComponent(() => import("./Hero/index.vue")),
-  navigation_item: defineAsyncComponent(
-    () => import("./NavigationItem/index.vue")
+  image: defineAsyncComponent(() => import("./Image/index.vue")),
+  items_by_category: defineAsyncComponent(
+    () => import("./ItemsByCategory/index.vue")
   ),
+  menu_item: defineAsyncComponent(() => import("./MenuItem/index.vue")),
   newsletter: defineAsyncComponent(() => import("./Newsletter/index.vue")),
-  portfolio_category: defineAsyncComponent(
-    () => import("./PortfolioCategory/index.vue")
+  portfolio_item_grid: defineAsyncComponent(
+    () => import("./PortfolioItemGrid/index.vue")
   ),
+  quote: defineAsyncComponent(() => import("./Quote/index.vue")),
+  text: defineAsyncComponent(() => import("./Text/index.vue")),
 });
