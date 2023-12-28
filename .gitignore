@@ -4,8 +4,9 @@ node_modules
 .nitro
 .cache
 .output
-.data
 .env
 dist
+.DS_Store
+
 # Local Netlify folder
 .netlify
