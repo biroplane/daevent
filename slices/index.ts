@@ -8,6 +8,7 @@ export const components = defineSliceZoneComponents({
     () => import("./AlternateGrid/index.vue")
   ),
   artist_card: defineAsyncComponent(() => import("./ArtistCard/index.vue")),
+  artists_grid: defineAsyncComponent(() => import("./ArtistsGrid/index.vue")),
   blog_posts: defineAsyncComponent(() => import("./BlogPosts/index.vue")),
   call_to_action: defineAsyncComponent(
     () => import("./CallToAction/index.vue")
@@ -33,5 +34,8 @@ export const components = defineSliceZoneComponents({
     () => import("./PortfolioItemGrid/index.vue")
   ),
   quote: defineAsyncComponent(() => import("./Quote/index.vue")),
+  testimonials: defineAsyncComponent(() => import("./Testimonials/index.vue")),
   text: defineAsyncComponent(() => import("./Text/index.vue")),
+  video: defineAsyncComponent(() => import("./Video/index.vue")),
+  video_grid: defineAsyncComponent(() => import("./VideoGrid/index.vue")),
 });

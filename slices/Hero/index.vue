@@ -34,7 +34,7 @@ defineProps(
           'col-start-2': slice.primary.reverse,
         }"
       >
-        <div class="flex flex-col justify-center">
+        <div class="inline-flex flex-col justify-center">
           <p
             v-if="isFilled.keyText(slice.primary.eyebrowHeadline)"
             class="text-sm lg:text-base text-neutral-500"

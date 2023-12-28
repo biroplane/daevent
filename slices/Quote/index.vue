@@ -22,7 +22,7 @@ defineProps(
     <div class="quote">
       <PrismicRichText
         :field="slice.primary.text"
-        class="text-2xl font-bold"
+        class="text-2xl font-bold max-w-2xl mx-auto balance"
       ></PrismicRichText>
     </div>
   </section>
@@ -31,10 +31,12 @@ defineProps(
 .quote {
   @apply relative text-center p-4;
   &::before {
+    font-family: serif;
     content: "\201C";
     @apply absolute left-24 top-0 text-7xl opacity-20;
   }
   &::after {
+    font-family: serif;
     content: "\201E";
     @apply absolute right-24 bottom-0 text-7xl opacity-20;
   }

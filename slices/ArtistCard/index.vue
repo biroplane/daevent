@@ -18,7 +18,7 @@ const artist = computed(() => (props.slice.primary.artist as any).data);
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-    class="prose lg:prose mx-auto w-full md:max-w-none grid lg:grid-cols-3 gap-12 card mb-12"
+    class="grid w-full gap-12 mx-auto mb-12 prose lg:prose md:max-w-none lg:grid-cols-3 card"
   >
     <PrismicImage
       v-if="isFilled.image(artist.image)"

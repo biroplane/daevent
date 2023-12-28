@@ -27,7 +27,6 @@
 					[
 						"image",
 						{
-							"__TYPE__": "ImageContent",
 							"origin": {
 								"id": "main",
 								"url": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2",
@@ -45,6 +44,9 @@
 								},
 								"background": "transparent"
 							},
+							"credits": null,
+							"alt": null,
+							"__TYPE__": "ImageContent",
 							"thumbnails": {}
 						}
 					],
@@ -64,6 +66,123 @@
 								"__TYPE__": "ExternalLink",
 								"url": "https://slicemachine.dev"
 							}
+						}
+					]
+				]
+			},
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"image",
+						{
+							"url": "https://images.unsplash.com/photo-1696446992416-2ff75fdbd729?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MXwxfHNlYXJjaHwxfHxmcnVpdHxlbnwwfHx8fDE3MDM2OTA4MzN8MA&ixlib=rb-4.0.3&q=85",
+							"alt": "a person holding a carton of water next to a swimming pool",
+							"origin": {
+								"id": "w0xu3QG05V8",
+								"url": "https://images.unsplash.com/photo-1696446992416-2ff75fdbd729?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MXwxfHNlYXJjaHwxfHxmcnVpdHxlbnwwfHx8fDE3MDM2OTA4MzN8MA&ixlib=rb-4.0.3&q=85",
+								"width": 5332,
+								"height": 8000
+							},
+							"width": 5332,
+							"height": 8000,
+							"edit": {
+								"background": "transparent",
+								"zoom": 1,
+								"crop": {
+									"x": 0,
+									"y": 0
+								}
+							},
+							"credits": null,
+							"__TYPE__": "ImageContent",
+							"thumbnails": {}
+						}
+					],
+					[
+						"label",
+						{
+							"__TYPE__": "FieldContent",
+							"type": "Text",
+							"value": "Milk"
+						}
+					]
+				]
+			},
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"image",
+						{
+							"url": "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxMHx8ZnJ1aXR8ZW58MHx8fHwxNzAzNjkwODMzfDA&ixlib=rb-4.0.3&q=85",
+							"alt": "red apple fruit beside green apple and yellow fruit on brown woven basket",
+							"origin": {
+								"id": "5JQH9Iqnm9o",
+								"url": "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxMHx8ZnJ1aXR8ZW58MHx8fHwxNzAzNjkwODMzfDA&ixlib=rb-4.0.3&q=85",
+								"width": 4608,
+								"height": 3072
+							},
+							"width": 4608,
+							"height": 3072,
+							"edit": {
+								"background": "transparent",
+								"zoom": 1,
+								"crop": {
+									"x": 0,
+									"y": 0
+								}
+							},
+							"credits": null,
+							"__TYPE__": "ImageContent",
+							"thumbnails": {}
+						}
+					],
+					[
+						"label",
+						{
+							"__TYPE__": "FieldContent",
+							"type": "Text",
+							"value": "Frutta"
+						}
+					]
+				]
+			},
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"image",
+						{
+							"url": "https://images.unsplash.com/photo-1696446700369-58db7f7ab9bf?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MXwxfHNlYXJjaHwyOXx8ZnJ1aXR8ZW58MHx8fHwxNzAzNjkwODMzfDA&ixlib=rb-4.0.3&q=85",
+							"alt": "a person cutting an orange on a cutting board",
+							"origin": {
+								"id": "FxbImDRNZy4",
+								"url": "https://images.unsplash.com/photo-1696446700369-58db7f7ab9bf?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MXwxfHNlYXJjaHwyOXx8ZnJ1aXR8ZW58MHx8fHwxNzAzNjkwODMzfDA&ixlib=rb-4.0.3&q=85",
+								"width": 5817,
+								"height": 3870
+							},
+							"width": 5817,
+							"height": 3870,
+							"edit": {
+								"background": "transparent",
+								"zoom": 1,
+								"crop": {
+									"x": 0,
+									"y": 0
+								}
+							},
+							"credits": null,
+							"__TYPE__": "ImageContent",
+							"thumbnails": {}
+						}
+					],
+					[
+						"label",
+						{
+							"__TYPE__": "FieldContent",
+							"type": "Text",
+							"value": "Tagliere con testo molto lungo per verificare come funziona il bilanciamento del testo. \nAh! forse è il caso di aggiungere un \"balance\""
 						}
 					]
 				]

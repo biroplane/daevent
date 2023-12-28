@@ -171,6 +171,86 @@ export type ArtistPageDocument<Lang extends string = string> =
     Lang
   >;
 
+type ArtistsPageDocumentDataSlicesSlice =
+  | ArtistsGridSlice
+  | HeroSlice
+  | CustomerLogosSlice
+  | VideoGridSlice
+  | VideoSlice
+  | TextSlice
+  | QuoteSlice
+  | GallerySlice
+  | NewsletterSlice
+  | PortfolioItemGridSlice
+  | ContactFormSlice
+  | ItemsByCategorySlice
+  | ImageSlice
+  | HeadingSlice
+  | ArtistCardSlice;
+
+/**
+ * Content for Artists Page documents
+ */
+interface ArtistsPageDocumentData {
+  /**
+   * Slice Zone field in *Artists Page*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artists_page.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ArtistsPageDocumentDataSlicesSlice> /**
+   * Meta Description field in *Artists Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: artists_page.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Artists Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artists_page.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Artists Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: artists_page.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Artists Page document from Prismic
+ *
+ * - **API ID**: `artists_page`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ArtistsPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ArtistsPageDocumentData>,
+    "artists_page",
+    Lang
+  >;
+
 type BlogDocumentDataSlicesSlice = never;
 
 /**
@@ -257,6 +337,28 @@ interface CategoryDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   title: prismic.KeyTextField;
+
+  /**
+   * Description field in *Category*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: category.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Image field in *Category*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: category.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
 }
 
 /**
@@ -341,6 +443,11 @@ export type CategoryPageDocument<Lang extends string = string> =
   >;
 
 type HomepageDocumentDataSlicesSlice =
+  | GallerySlice
+  | VideoGridSlice
+  | TestimonialsSlice
+  | TextSlice
+  | QuoteSlice
   | CategoryGridSlice
   | NewsletterSlice
   | GoogleReviewsSlice
@@ -802,6 +909,7 @@ export type SingleCategoryDocument<Lang extends string = string> =
   >;
 
 type StaticPageDocumentDataSlicesSlice =
+  | ArtistsGridSlice
   | HeroSlice
   | AlternateGridSlice
   | CustomerLogosSlice
@@ -907,9 +1015,75 @@ export type SubMenuDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Content for Testimonial documents
+ */
+interface TestimonialDocumentData {
+  /**
+   * Title field in *Testimonial*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Body field in *Testimonial*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial.body
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Author field in *Testimonial*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial.author
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  author: prismic.KeyTextField;
+
+  /**
+   * Date field in *Testimonial*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial.date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  date: prismic.DateField;
+}
+
+/**
+ * Testimonial document from Prismic
+ *
+ * - **API ID**: `testimonial`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TestimonialDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<TestimonialDocumentData>,
+    "testimonial",
+    Lang
+  >;
+
 export type AllDocumentTypes =
   | ArtistDocument
   | ArtistPageDocument
+  | ArtistsPageDocument
   | BlogDocument
   | CategoryDocument
   | CategoryPageDocument
@@ -920,7 +1094,8 @@ export type AllDocumentTypes =
   | PostDocument
   | SingleCategoryDocument
   | StaticPageDocument
-  | SubMenuDocument;
+  | SubMenuDocument
+  | TestimonialDocument;
 
 /**
  * Primary content in *AlternateGrid → Primary*
@@ -1150,6 +1325,61 @@ type ArtistCardSliceVariation = ArtistCardSliceDefault;
 export type ArtistCardSlice = prismic.SharedSlice<
   "artist_card",
   ArtistCardSliceVariation
+>;
+
+/**
+ * Primary content in *ArtistsGrid → Primary*
+ */
+export interface ArtistsGridSliceDefaultPrimary {
+  /**
+   * Title field in *ArtistsGrid → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artists_grid.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *ArtistsGrid → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artists_grid.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * Default variation for ArtistsGrid Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ArtistsGridSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ArtistsGridSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ArtistsGrid*
+ */
+type ArtistsGridSliceVariation = ArtistsGridSliceDefault;
+
+/**
+ * ArtistsGrid Shared Slice
+ *
+ * - **API ID**: `artists_grid`
+ * - **Description**: ArtistsGrid
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ArtistsGridSlice = prismic.SharedSlice<
+  "artists_grid",
+  ArtistsGridSliceVariation
 >;
 
 /**
@@ -2310,6 +2540,71 @@ type QuoteSliceVariation = QuoteSliceDefault;
 export type QuoteSlice = prismic.SharedSlice<"quote", QuoteSliceVariation>;
 
 /**
+ * Primary content in *Testimonials → Primary*
+ */
+export interface TestimonialsSliceDefaultPrimary {
+  /**
+   * Title field in *Testimonials → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonials.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *Testimonials → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonials.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Count field in *Testimonials → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: 12
+   * - **API ID Path**: testimonials.primary.count
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  count: prismic.NumberField;
+}
+
+/**
+ * Default variation for Testimonials Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TestimonialsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TestimonialsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Testimonials*
+ */
+type TestimonialsSliceVariation = TestimonialsSliceDefault;
+
+/**
+ * Testimonials Shared Slice
+ *
+ * - **API ID**: `testimonials`
+ * - **Description**: Testimonials
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TestimonialsSlice = prismic.SharedSlice<
+  "testimonials",
+  TestimonialsSliceVariation
+>;
+
+/**
  * Primary content in *Text → Primary*
  */
 export interface TextSliceDefaultPrimary {
@@ -2338,9 +2633,37 @@ export type TextSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Text → Primary*
+ */
+export interface TextSliceContainerPrimary {
+  /**
+   * Body field in *Text → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+}
+
+/**
+ * Container variation for Text Slice
+ *
+ * - **API ID**: `container`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextSliceContainer = prismic.SharedSliceVariation<
+  "container",
+  Simplify<TextSliceContainerPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Text*
  */
-type TextSliceVariation = TextSliceDefault;
+type TextSliceVariation = TextSliceDefault | TextSliceContainer;
 
 /**
  * Text Shared Slice
@@ -2350,6 +2673,138 @@ type TextSliceVariation = TextSliceDefault;
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type TextSlice = prismic.SharedSlice<"text", TextSliceVariation>;
+
+/**
+ * Primary content in *Video → Primary*
+ */
+export interface VideoSliceDefaultPrimary {
+  /**
+   * Title field in *Video → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Video Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type VideoSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<VideoSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Video*
+ */
+type VideoSliceVariation = VideoSliceDefault;
+
+/**
+ * Video Shared Slice
+ *
+ * - **API ID**: `video`
+ * - **Description**: Video
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type VideoSlice = prismic.SharedSlice<"video", VideoSliceVariation>;
+
+/**
+ * Primary content in *VideoGrid → Primary*
+ */
+export interface VideoGridSliceDefaultPrimary {
+  /**
+   * Title field in *VideoGrid → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video_grid.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *VideoGrid → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video_grid.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Columns field in *VideoGrid → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video_grid.primary.columns
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  columns: prismic.NumberField;
+}
+
+/**
+ * Primary content in *VideoGrid → Items*
+ */
+export interface VideoGridSliceDefaultItem {
+  /**
+   * Title field in *VideoGrid → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video_grid.items[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Embed field in *VideoGrid → Items*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video_grid.items[].embed
+   * - **Documentation**: https://prismic.io/docs/field#embed
+   */
+  embed: prismic.EmbedField;
+}
+
+/**
+ * Default variation for VideoGrid Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type VideoGridSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<VideoGridSliceDefaultPrimary>,
+  Simplify<VideoGridSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *VideoGrid*
+ */
+type VideoGridSliceVariation = VideoGridSliceDefault;
+
+/**
+ * VideoGrid Shared Slice
+ *
+ * - **API ID**: `video_grid`
+ * - **Description**: VideoGrid
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type VideoGridSlice = prismic.SharedSlice<
+  "video_grid",
+  VideoGridSliceVariation
+>;
 
 declare module "@prismicio/client" {
   interface CreateClient {
@@ -2368,6 +2823,9 @@ declare module "@prismicio/client" {
       ArtistPageDocument,
       ArtistPageDocumentData,
       ArtistPageDocumentDataSlicesSlice,
+      ArtistsPageDocument,
+      ArtistsPageDocumentData,
+      ArtistsPageDocumentDataSlicesSlice,
       BlogDocument,
       BlogDocumentData,
       BlogDocumentDataSlicesSlice,
@@ -2402,6 +2860,8 @@ declare module "@prismicio/client" {
       SubMenuDocument,
       SubMenuDocumentData,
       SubMenuDocumentDataSlicesSlice,
+      TestimonialDocument,
+      TestimonialDocumentData,
       AllDocumentTypes,
       AlternateGridSlice,
       AlternateGridSliceDefaultPrimary,
@@ -2415,6 +2875,10 @@ declare module "@prismicio/client" {
       ArtistCardSliceDefaultPrimary,
       ArtistCardSliceVariation,
       ArtistCardSliceDefault,
+      ArtistsGridSlice,
+      ArtistsGridSliceDefaultPrimary,
+      ArtistsGridSliceVariation,
+      ArtistsGridSliceDefault,
       BlogPostsSlice,
       BlogPostsSliceDefaultPrimary,
       BlogPostsSliceVariation,
@@ -2484,10 +2948,25 @@ declare module "@prismicio/client" {
       QuoteSliceDefaultPrimary,
       QuoteSliceVariation,
       QuoteSliceDefault,
+      TestimonialsSlice,
+      TestimonialsSliceDefaultPrimary,
+      TestimonialsSliceVariation,
+      TestimonialsSliceDefault,
       TextSlice,
       TextSliceDefaultPrimary,
+      TextSliceContainerPrimary,
       TextSliceVariation,
       TextSliceDefault,
+      TextSliceContainer,
+      VideoSlice,
+      VideoSliceDefaultPrimary,
+      VideoSliceVariation,
+      VideoSliceDefault,
+      VideoGridSlice,
+      VideoGridSliceDefaultPrimary,
+      VideoGridSliceDefaultItem,
+      VideoGridSliceVariation,
+      VideoGridSliceDefault,
     };
   }
 }

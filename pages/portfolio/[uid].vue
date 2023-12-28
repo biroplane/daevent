@@ -24,18 +24,18 @@ useHead({
   meta: [
     {
       name: "description",
-      content: page.value?.data.meta_description,
+      content: "", // page.value?.data?.meta_description,
     },
   ],
 });
 </script>
 
 <template>
-  <div class="py-24 prose mx-auto max-w-7xl container">
+  <div class="container py-24 mx-auto prose max-w-7xl">
     <PrismicImage
       v-if="isFilled.image(page?.data.featured_image)"
       :field="page?.data.featured_image"
-      class="w-full object-cover"
+      class="object-cover w-full"
     />
     <h1>{{ page?.data.title }}</h1>
     <PrismicRichText :field="page?.data.description" />

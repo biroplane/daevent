@@ -16,12 +16,19 @@ useHead({
     },
   ],
 });
-console.log("Carico la route", route.params.uid, posts);
+
+const { data: artistByItem } = useAsyncData("artistsByCat", () =>
+  prismic.client.getAllByType("artist", {
+    filters: [
+      prismic.filter.at("my.artist.categories.category", route.params.uid),
+    ],
+  })
+);
+console.log("Carico la route", route.params.uid, artistByItem);
 </script>
 
 <template>
   <div class="pt-24">
-    Posts => {{ posts }}
     <SliceZone
       wrapper="main"
       :slices="page?.data.slices ?? []"

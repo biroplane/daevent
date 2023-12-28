@@ -60,6 +60,7 @@ export default defineNuxtConfig({
         { type: "post", path: "/blog/:uid" },
         // { type: "single_category", path: "/categorie-portfolio/:uid" },
         { type: "artist_page", path: "/artist/:uid" },
+        { type: "artists_page", path: "/artist" },
         { type: "portfolio", path: "/portfolio" },
       ],
     },

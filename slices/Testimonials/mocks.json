@@ -1,0 +1,30 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "bowl",
+				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Magna qui ex excepteur occaecat eiusmod incididunt sunt."
+						}
+					}
+				]
+			},
+			"count": {
+				"__TYPE__": "FieldContent",
+				"value": "21",
+				"type": "Number"
+			}
+		},
+		"items": []
+	}
+]

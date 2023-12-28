@@ -8,10 +8,16 @@
     }
   }
   .chips {
-    @apply bg-primary-500 text-white px-4 py-2 rounded-sm shadow-lg inline-block;
+    @apply text-primary-800 bg-primary-300 px-4 py-1 rounded-full text-[10px] shadow-lg;
+    .primary {
+      @apply bg-primary-300;
+    }
+    &.secondary {
+      @apply bg-indigo-300 text-indigo-800;
+    }
   }
   .card {
-    @apply p-4 rounded-md shadow-lg border  border-primary-200 odd:bg-gradient-to-tr even:bg-gradient-to-b from-primary-50 via-transparent;
+    /* @apply p-4 rounded-md shadow-lg border  border-primary-200 odd:bg-gradient-to-tr even:bg-gradient-to-b from-primary-50 via-transparent;*/
   }
 }
 
@@ -28,5 +34,17 @@
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+  .balance {
+    text-wrap: balance;
+  }
+  .highlight {
+    display: inline-block;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    line-height: 1.6rem;
+    padding: 0.3rem 1rem;
+    box-decoration-break: clone;
+    @apply bg-primary-300 text-black;
   }
 }

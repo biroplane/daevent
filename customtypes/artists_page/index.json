@@ -1,6 +1,6 @@
 {
-  "id": "homepage",
-  "label": "homepage",
+  "id": "artists_page",
+  "label": "Artists Page",
   "format": "page",
   "repeatable": false,
   "status": true,
@@ -11,13 +11,19 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "gallery": {
+            "artists_grid": {
+              "type": "SharedSlice"
+            },
+            "hero": {
+              "type": "SharedSlice"
+            },
+            "customer_logos": {
               "type": "SharedSlice"
             },
             "video_grid": {
               "type": "SharedSlice"
             },
-            "testimonials": {
+            "video": {
               "type": "SharedSlice"
             },
             "text": {
@@ -26,25 +32,28 @@
             "quote": {
               "type": "SharedSlice"
             },
-            "category_grid": {
+            "gallery": {
               "type": "SharedSlice"
             },
             "newsletter": {
               "type": "SharedSlice"
             },
-            "google_reviews": {
+            "portfolio_item_grid": {
               "type": "SharedSlice"
             },
             "contact_form": {
               "type": "SharedSlice"
             },
-            "alternate_grid": {
+            "items_by_category": {
               "type": "SharedSlice"
             },
-            "customer_logos": {
+            "image": {
               "type": "SharedSlice"
             },
-            "hero": {
+            "heading": {
+              "type": "SharedSlice"
+            },
+            "artist_card": {
               "type": "SharedSlice"
             }
           }
