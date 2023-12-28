@@ -1,0 +1,25 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "bark",
+				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Ipsum sit sint occaecat cillum veniam dolore fugiat consequat cupidatat reprehenderit. Est laborum velit ea ad nostrud mollit do tempor elit. Laboris esse incididunt elit do elit incididunt deserunt excepteur."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

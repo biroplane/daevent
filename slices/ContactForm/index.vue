@@ -53,9 +53,9 @@ const send = () => {
           <h3 class="text-3xl font-bold leading-8">
             {{ slice.primary.title }}
           </h3>
-          <p class="hidden py-4 lg:block">
+          <div class="hidden py-4 lg:block">
             <PrismicRichText :field="slice.primary.description" />
-          </p>
+          </div>
         </div>
         <SocialLinks />
         <!-- class="flex-row flex-wrap lg:flex-col lg:basis-full lg:px-0" -->
@@ -64,9 +64,9 @@ const send = () => {
         <form @submit.prevent="send">
           <fieldset>
             <legend>Informazioni di contatto</legend>
-            <p class="mb-4 -mt-4 text-sm text-neutral-400">
+            <div class="mb-4 -mt-4 text-sm text-neutral-400">
               i campi contrassegnati con <strong>*</strong> sono obbligatori
-            </p>
+            </div>
             <div class="grid grid-cols-2 gap-4">
               <input
                 v-model="form.name"

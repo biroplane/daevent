@@ -6,34 +6,63 @@
   "status": true,
   "json": {
     "Main": {
+      "uid": {
+        "config": {
+          "label": "UID",
+          "useAsTitle": true
+        },
+        "type": "UID"
+      },
       "title": {
         "type": "Text",
         "config": {
           "label": "Title",
-          "placeholder": ""
+          "placeholder": "",
+          "useAsTitle": true
         }
       },
-      "uid": {
-        "config": {
-          "label": "UID"
-        },
-        "type": "UID"
-      },
-      "body": {
+      "description": {
         "type": "StructuredText",
         "config": {
-          "label": "Body",
+          "label": "Description",
           "placeholder": "",
           "allowTargetBlank": true,
-          "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },
-      "image": {
+      "featured_image": {
         "type": "Image",
         "config": {
-          "label": "Image",
+          "label": "Featured Image",
           "constraint": {},
           "thumbnails": []
+        }
+      },
+      "artists": {
+        "type": "Group",
+        "config": {
+          "label": "Artists",
+          "fields": {
+            "artist": {
+              "type": "Link",
+              "config": {
+                "label": "Artist",
+                "select": "document",
+                "customtypes": ["artist"]
+              }
+            }
+          }
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "artist_card": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     }

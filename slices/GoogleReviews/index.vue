@@ -23,7 +23,7 @@ if (ss.place?.status !== "OK") {
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
   >
-    <div class="relative min-h-[50vh]">
+    <div class="relative min-h-[50vh] py-24">
       <div class="absolute inset-0 h-full -z-10">
         <PrismicImage
           :field="slice.primary.background_image"
@@ -33,7 +33,7 @@ if (ss.place?.status !== "OK") {
       <div
         class="w-full h-full max-w-4xl px-12 py-12 mx-auto bg-black bg-opacity-70 backdrop-blur-lg"
       >
-        <h5 class="text-2xl font-bold text-center text-black">
+        <h5 class="mb-8 text-2xl font-bold text-center text-primary">
           {{ slice.primary.title }}
         </h5>
         <ClientOnly>
@@ -44,7 +44,7 @@ if (ss.place?.status !== "OK") {
             <div
               v-for="(review, r) in ss.place.result.reviews"
               :key="r"
-              class="flex-grow-0 flex-shrink-0 w-1/3 basis-1/3 card"
+              class="flex-grow-0 flex-shrink-0 w-1/3 bg-white basis-1/3 card text-neutral-600"
             >
               <div class="flex items-center gap-4">
                 <h6
@@ -63,15 +63,15 @@ if (ss.place?.status !== "OK") {
                 />
               </div>
               <p
-                class="overflow-y-auto text-xs italic leading-6 text-neutral-100 max-h-48 no-scrollbar"
+                class="overflow-y-auto text-xs italic leading-6 text-neutral-400 max-h-48 no-scrollbar"
               >
                 {{ review.text }}
               </p>
             </div>
           </div>
         </ClientOnly>
-        <div class="mt-6 text-center">
-          <h6 class="mb-4 text-2xl font-bold">Dicci la tua</h6>
+        <div class="mt-6 text-center text-white">
+          <h6 class="mb-4 text-lg font-bold">Dicci la tua</h6>
           <div>
             <a
               href="https://www.google.com/search?q=daevent+ruvo&sca_esv=577287814&rlz=1C5CHFA_enIT1044IT1044&sxsrf=AM9HkKlEAEIZrs58iTcZouFVd3IulW6vUw%3A1698440362705&ei=qiQ8ZZjXKsrY7_UPmbimwAY&ved=0ahUKEwiY1Pazj5eCAxVK7LsIHRmcCWgQ4dUDCBA&uact=5&oq=daevent+ruvo&gs_lp=Egxnd3Mtd2l6LXNlcnAiDGRhZXZlbnQgcnV2bzIFECEYoAEyBRAhGKABSNo6UO4FWIQ1cAN4AJABAJgB4wGgAe4PqgEGMC4xMS4xuAEDyAEA-AEBwgIKEAAYigUYsAMYQ8ICCRAAGAcYHhiwA8ICFhAuGIoFGMcBGNEDGMgDGLADGEPYAQHCAhcQLhivARjHARjLARiABBjIAxiwA9gBAcICGRAuGIoFGMcBGK8BGJgFGMgDGLADGEPYAQHCAgcQIxiKBRgnwgIEECMYJ8ICDBAjGIoFGBMYgAQYJ8ICDRAuGIoFGMcBGNEDGEPCAgUQABiABMICCxAuGIAEGMcBGNEDwgIHEC4YigUYQ8ICBRAuGIAEwgIHEAAYigUYQ8ICDRAuGIAEGMcBGNEDGArCAgcQABiABBgKwgILEC4YgAQYxwEYrwHCAhwQLhiABBjHARjRAxgKGJcFGNwEGN4EGOAE2AECwgIKEAAYywEYgAQYCsICChAuGMsBGIAEGArCAggQABjLARiABMICEBAuGMsBGIAEGMcBGNEDGArCAhAQLhjLARiABBjHARivARgKwgIEEAAYHsICBhAAGAUYHsICHxAuGMsBGIAEGMcBGK8BGAoYlwUY3AQY3gQY4ATYAQLiAwQYASBBiAYBkAYMugYECAEYCLoGBggCEAEYFA&sclient=gws-wiz-serp#lrd=0x13380988f5c69ae3:0x4fb9a388668b742f,1,,,,"

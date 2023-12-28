@@ -1,0 +1,6 @@
+---
+navigation:
+  title: "Pippo"
+---
+
+# Welcome

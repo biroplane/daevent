@@ -1,16 +1,29 @@
 <script setup lang="ts">
-const { menu } = useNavigationStore();
+import { components } from "~/slices";
+const prismic = usePrismic();
+const { data: navigation } = useAsyncData("navigation", () =>
+  prismic.client.getSingle("navigation")
+);
+console.log("Nav", navigation.value);
+// const getLink = async (comp: any) => {
+//   console.log("ciao", comp);
+//   if (!comp.child_link.id) return;
+//   const _link = await prismic.client.getByID(comp.child_link.id);
+
+//   console.log("THE LINK", _link);
+//   return Promise.resolve(_link);
+// };
+
+// navigation.value?.data.slices.forEach( (slice)=>{
+//   slice.items.map(s=>)
+// })
 </script>
 <template>
-  <ul class="flex w-full gap-4">
-    <li
-      v-for="item in menu"
-      :key="item.label"
-      class="capitalize hover:font-medium"
-    >
-      <NuxtLink :to="item.route" active-class="font-bold">
-        {{ item.label }}
-      </NuxtLink>
-    </li>
+  <ul class="flex flex-col lg:flex-row w-full gap-8">
+    <SliceZone
+      wrapper="li"
+      :slices="navigation?.data.slices ?? []"
+      :components="components"
+    />
   </ul>
 </template>

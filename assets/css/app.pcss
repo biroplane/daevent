@@ -4,3 +4,17 @@ html,
 body {
   @apply w-full h-screen;
 }
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.5s;
+  transform-origin: 0% 25%;
+}
+
+.page-enter-from,
+.page-leave-to {
+  transform-origin: 0% 75%;
+  opacity: 0;
+  filter: blur(1rem);
+  transform: rotate(10deg) translateY(500px);
+}

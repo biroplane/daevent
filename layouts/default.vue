@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div class="">
     <AppHeader />
 
     <slot></slot>

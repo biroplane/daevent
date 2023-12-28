@@ -6,25 +6,13 @@
   "status": true,
   "json": {
     "Main": {
-      "item": {
-        "type": "Group",
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
         "config": {
-          "label": "Item",
-          "fields": {
-            "label": {
-              "type": "Text",
-              "config": {
-                "label": "Label",
-                "placeholder": ""
-              }
-            },
-            "link": {
-              "type": "Link",
-              "config": {
-                "label": "Link",
-                "placeholder": "",
-                "select": null
-              }
+          "choices": {
+            "menu_item": {
+              "type": "SharedSlice"
             }
           }
         }

@@ -1,0 +1,29 @@
+{
+  "id": "artist_card",
+  "type": "SharedSlice",
+  "name": "ArtistCard",
+  "description": "ArtistCard",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "artist": {
+          "type": "Link",
+          "config": {
+            "label": "Artist",
+            "select": "document",
+            "customtypes": [
+              "artist"
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

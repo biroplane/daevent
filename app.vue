@@ -1,15 +1,25 @@
+<script setup lang="ts">
+import { useRouterStore } from "~~/stores/routerStore";
+const routerStore = useRouterStore();
+
+useHead({
+  titleTemplate: (title) => `${title} | DA Event`,
+});
+</script>
+
 <template>
   <div class="h-screen">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
+
     <!-- <CookieControl locale="it" /> -->
   </div>
 </template>
 
 <style lang="postcss">
 body {
-  @apply font-body text-white bg-black;
+  @apply font-body;
 }
 /* 
 */

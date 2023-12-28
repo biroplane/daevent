@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     preset: "netlify",
   },
   app: {
+    pageTransition: { name: "page", mode: "out-in" },
     head: {
       link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
     },
@@ -48,10 +49,19 @@ export default defineNuxtConfig({
   // },
   prismic: {
     endpoint: "daevent",
+    toolbar: false,
+    preview: false,
     clientConfig: {
+      brokenRoute: "/404",
       routes: [
         { type: "homepage", path: "/" },
-        // { type: "portfolio", path: "/portfolio" },
+        { type: "static_page", path: "/:uid" },
+        { type: "blog", path: "/blog" },
+        { type: "post", path: "/blog/:uid" },
+        // { type: "single_category", path: "/categorie-portfolio/:uid" },
+        { type: "artist_page", path: "/artist/:uid" },
+        { type: "artists_page", path: "/artist" },
+        { type: "portfolio", path: "/portfolio" },
       ],
     },
   },
