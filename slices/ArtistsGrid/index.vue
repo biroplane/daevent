@@ -31,7 +31,7 @@ console.log("Artists ", artists.value);
   >
     <h2 class="py-6 text-4xl text-primary-500">{{ slice.primary.title }}</h2>
     <PrismicRichText :field="slice.primary.description" />
-    <ul class="grid grid-flow-row grid-cols-4 grid-rows-5 gap-12">
+    <ul class="grid grid-cols-4 gap-12">
       <li v-for="(artist, a) in artists" :key="a">
         <Card :image="(artist.data.image as any).url" class="">
           <template #default>
