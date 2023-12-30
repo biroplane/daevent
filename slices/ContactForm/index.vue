@@ -46,7 +46,7 @@ const send = () => {
   >
     <div class="flex flex-col w-full lg:flex-row bg-sand-200 @container">
       <div
-        class="flex flex-wrap items-baseline flex-none px-4 py-24 lg:items-start lg:flex-nowrap lg:flex-col lg:w-1/3 bg-gradient-to-t from-indigo-500 to-indigo-300"
+        class="flex flex-wrap items-baseline flex-none px-4 py-24 lg:items-start lg:flex-nowrap lg:flex-col lg:w-1/3 bg-gradient-to-t from-secondary-500 to-secondary-300"
       >
         <Logo class="hidden lg:block lg:mt-6" />
         <div class="flex-grow my-6 text-white">

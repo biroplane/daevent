@@ -11,6 +11,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "category_grid": {
+              "type": "SharedSlice"
+            },
             "portfolio_item_grid": {
               "type": "SharedSlice"
             },

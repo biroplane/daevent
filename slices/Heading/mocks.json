@@ -7,6 +7,11 @@
 				"__TYPE__": "FieldContent",
 				"value": "successful",
 				"type": "Text"
+			},
+			"level": {
+				"__TYPE__": "FieldContent",
+				"value": "4",
+				"type": "Select"
 			}
 		},
 		"items": []

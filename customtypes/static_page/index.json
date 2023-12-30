@@ -17,6 +17,27 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "video_grid": {
+              "type": "SharedSlice"
+            },
+            "text": {
+              "type": "SharedSlice"
+            },
+            "video": {
+              "type": "SharedSlice"
+            },
+            "quote": {
+              "type": "SharedSlice"
+            },
+            "image": {
+              "type": "SharedSlice"
+            },
+            "heading": {
+              "type": "SharedSlice"
+            },
+            "gallery": {
+              "type": "SharedSlice"
+            },
             "artists_grid": {
               "type": "SharedSlice"
             },

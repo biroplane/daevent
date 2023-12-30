@@ -323,6 +323,15 @@ interface BlogDocumentData {
 export type BlogDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<BlogDocumentData>, "blog", Lang>;
 
+type CategoryDocumentDataSlicesSlice =
+  | QuoteSlice
+  | VideoSlice
+  | TextSlice
+  | NewsletterSlice
+  | ImageSlice
+  | ContactFormSlice
+  | ArtistsGridSlice;
+
 /**
  * Content for Category documents
  */
@@ -359,6 +368,17 @@ interface CategoryDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>;
+
+  /**
+   * Slice Zone field in *Category*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: category.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<CategoryDocumentDataSlicesSlice>;
 }
 
 /**
@@ -374,71 +394,6 @@ export type CategoryDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
     Simplify<CategoryDocumentData>,
     "category",
-    Lang
-  >;
-
-type CategoryPageDocumentDataSlicesSlice = never;
-
-/**
- * Content for Category Page documents
- */
-interface CategoryPageDocumentData {
-  /**
-   * Slice Zone field in *Category Page*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: category_page.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<CategoryPageDocumentDataSlicesSlice> /**
-   * Meta Description field in *Category Page*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: category_page.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *Category Page*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: category_page.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>;
-
-  /**
-   * Meta Title field in *Category Page*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: category_page.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_title: prismic.KeyTextField;
-}
-
-/**
- * Category Page document from Prismic
- *
- * - **API ID**: `category_page`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type CategoryPageDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<CategoryPageDocumentData>,
-    "category_page",
     Lang
   >;
 
@@ -519,6 +474,84 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *Link Social → Social*
+ */
+export interface LinkSocialDocumentDataSocialItem {
+  /**
+   * icon field in *Link Social → Social*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Facebook
+   * - **API ID Path**: link_social.social[].icon
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  icon: prismic.SelectField<
+    | "Facebook"
+    | "Instagram"
+    | "Threads"
+    | "X"
+    | "TikTok"
+    | "YouTube"
+    | "SoundCloud",
+    "filled"
+  >;
+
+  /**
+   * Link field in *Link Social → Social*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: link_social.social[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * Content for Link Social documents
+ */
+interface LinkSocialDocumentData {
+  /**
+   * Title field in *Link Social*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: link_social.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Social field in *Link Social*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: link_social.social[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  social: prismic.GroupField<Simplify<LinkSocialDocumentDataSocialItem>>;
+}
+
+/**
+ * Link Social document from Prismic
+ *
+ * - **API ID**: `link_social`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type LinkSocialDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<LinkSocialDocumentData>,
+    "link_social",
+    Lang
+  >;
+
 type NavigationDocumentDataSlicesSlice = MenuItemSlice;
 
 /**
@@ -554,6 +587,7 @@ export type NavigationDocument<Lang extends string = string> =
   >;
 
 type PortfolioDocumentDataSlicesSlice =
+  | CategoryGridSlice
   | PortfolioItemGridSlice
   | CustomerLogosSlice
   | HeroSlice
@@ -908,7 +942,90 @@ export type SingleCategoryDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *SocialLinks → Links*
+ */
+export interface SociallinksDocumentDataLinksItem {
+  /**
+   * icon field in *SocialLinks → Links*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sociallinks.links[].icon
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  icon: prismic.SelectField<
+    | "Facebook"
+    | "Instagram"
+    | "X"
+    | "Threads"
+    | "TikTok"
+    | "Youtube"
+    | "Sound Cloud"
+  >;
+
+  /**
+   * Link field in *SocialLinks → Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sociallinks.links[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * Content for SocialLinks documents
+ */
+interface SociallinksDocumentData {
+  /**
+   * Title field in *SocialLinks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sociallinks.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Links field in *SocialLinks*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sociallinks.links[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  links: prismic.GroupField<Simplify<SociallinksDocumentDataLinksItem>>;
+}
+
+/**
+ * SocialLinks document from Prismic
+ *
+ * - **API ID**: `sociallinks`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SociallinksDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<SociallinksDocumentData>,
+    "sociallinks",
+    Lang
+  >;
+
 type StaticPageDocumentDataSlicesSlice =
+  | VideoGridSlice
+  | TextSlice
+  | VideoSlice
+  | QuoteSlice
+  | ImageSlice
+  | HeadingSlice
+  | GallerySlice
   | ArtistsGridSlice
   | HeroSlice
   | AlternateGridSlice
@@ -1086,13 +1203,14 @@ export type AllDocumentTypes =
   | ArtistsPageDocument
   | BlogDocument
   | CategoryDocument
-  | CategoryPageDocument
   | HomepageDocument
+  | LinkSocialDocument
   | NavigationDocument
   | PortfolioDocument
   | PortfolioItemDocument
   | PostDocument
   | SingleCategoryDocument
+  | SociallinksDocument
   | StaticPageDocument
   | SubMenuDocument
   | TestimonialDocument;
@@ -1366,9 +1484,49 @@ export type ArtistsGridSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *ArtistsGrid → Primary*
+ */
+export interface ArtistsGridSliceByCategoryPrimary {
+  /**
+   * Title field in *ArtistsGrid → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artists_grid.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *ArtistsGrid → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artists_grid.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * byCategory variation for ArtistsGrid Slice
+ *
+ * - **API ID**: `byCategory`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ArtistsGridSliceByCategory = prismic.SharedSliceVariation<
+  "byCategory",
+  Simplify<ArtistsGridSliceByCategoryPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *ArtistsGrid*
  */
-type ArtistsGridSliceVariation = ArtistsGridSliceDefault;
+type ArtistsGridSliceVariation =
+  | ArtistsGridSliceDefault
+  | ArtistsGridSliceByCategory;
 
 /**
  * ArtistsGrid Shared Slice
@@ -1970,6 +2128,16 @@ export interface HeadingSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   label: prismic.KeyTextField;
+
+  /**
+   * Level field in *Heading → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: The higher the number, the smaller the text
+   * - **API ID Path**: heading.primary.level
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  level: prismic.SelectField<"1" | "2" | "3" | "4" | "5" | "6">;
 }
 
 /**
@@ -2831,12 +2999,13 @@ declare module "@prismicio/client" {
       BlogDocumentDataSlicesSlice,
       CategoryDocument,
       CategoryDocumentData,
-      CategoryPageDocument,
-      CategoryPageDocumentData,
-      CategoryPageDocumentDataSlicesSlice,
+      CategoryDocumentDataSlicesSlice,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
+      LinkSocialDocument,
+      LinkSocialDocumentData,
+      LinkSocialDocumentDataSocialItem,
       NavigationDocument,
       NavigationDocumentData,
       NavigationDocumentDataSlicesSlice,
@@ -2854,6 +3023,9 @@ declare module "@prismicio/client" {
       SingleCategoryDocument,
       SingleCategoryDocumentData,
       SingleCategoryDocumentDataSlicesSlice,
+      SociallinksDocument,
+      SociallinksDocumentData,
+      SociallinksDocumentDataLinksItem,
       StaticPageDocument,
       StaticPageDocumentData,
       StaticPageDocumentDataSlicesSlice,
@@ -2877,8 +3049,10 @@ declare module "@prismicio/client" {
       ArtistCardSliceDefault,
       ArtistsGridSlice,
       ArtistsGridSliceDefaultPrimary,
+      ArtistsGridSliceByCategoryPrimary,
       ArtistsGridSliceVariation,
       ArtistsGridSliceDefault,
+      ArtistsGridSliceByCategory,
       BlogPostsSlice,
       BlogPostsSliceDefaultPrimary,
       BlogPostsSliceVariation,

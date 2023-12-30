@@ -11,7 +11,10 @@
         📞 (+39) 340.401.74.74 <br />
         ✉️ info@daeventpuglia.it
       </div>
-      <div class="">Social</div>
+      <div class="">
+        Social
+        <SocialLinks short></SocialLinks>
+      </div>
     </div>
   </footer>
 </template>

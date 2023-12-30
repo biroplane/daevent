@@ -6,21 +6,7 @@ const { data: page } = useAsyncData("[portfolio]", () =>
 );
 // const data = await prismic.client.getAllByType("portfolio_item");
 const { data: items } = useAsyncData("portfolioItems", () =>
-  prismic.client.getAllByType("portfolio_item", {
-    graphQuery: `{
-
-  allPortfolio_items {
-    edges {
-      node {
-        title
-        description
-        
-      }
-    }
-  }
-
-    }`,
-  })
+  prismic.client.getAllByType("portfolio_item")
 );
 console.log("Portfolio data", items.value);
 useHead({

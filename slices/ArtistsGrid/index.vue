@@ -4,7 +4,7 @@ import { type Content } from "@prismicio/client";
 const prismic = usePrismic();
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
-defineProps(
+const props = defineProps(
   getSliceComponentProps<Content.ArtistsGridSlice>([
     "slice",
     "index",
@@ -13,14 +13,33 @@ defineProps(
   ])
 );
 
-const { data: artists } = await useAsyncData(
-  "allArtistsGrid",
-  async () =>
-    await prismic.client.getAllByType("artist", {
-      fetchLinks: "category.title",
-    })
-);
-console.log("Artists ", artists.value);
+const artists = ref();
+const fetchArtists = async (id: string) =>
+  await prismic.client.getAllByType("artist", {
+    fetchLinks: "category.title",
+    // graphQuery:
+    //   props.slice.variation === "byCategory" && route.params.uid
+    //     ? categoryQuery
+    //     : "",
+    filters:
+      props.slice.variation === "byCategory" && id
+        ? [prismic.filter.at("my.artist.categories.category", id)]
+        : [],
+    // graphQuery: categoryQuery,
+  });
+// const { data: artists } = await useAsyncData("allArtistsGrid", fetchArtists);
+onMounted(async () => {
+  const main = document.querySelector("main");
+  console.log("MAIN ", main?.dataset.cid);
+  // const { data } = await useAsyncData(
+  //   "allArtistsGrid",
+  //   await fetchArtists(main?.dataset.cid)
+  // );
+  const data = await fetchArtists(main?.dataset.cid as string);
+  artists.value = data;
+});
+
+console.log("Artists ", artists.value, props);
 </script>
 
 <template>
@@ -29,18 +48,21 @@ console.log("Artists ", artists.value);
     :data-slice-variation="slice.variation"
     class="container py-12"
   >
-    <h2 class="py-6 text-4xl text-primary-500">{{ slice.primary.title }}</h2>
-    <PrismicRichText :field="slice.primary.description" />
-    <ul class="grid grid-cols-4 gap-12">
+    <div class="py-6">
+      <h2 class="py-6 text-4xl text-primary-500">{{ slice.primary.title }}</h2>
+      <PrismicRichText :field="slice.primary.description" />
+    </div>
+    <ul class="grid gap-12 md:grid-cols-2 xl:grid-cols-4">
       <li v-for="(artist, a) in artists" :key="a">
-        <Card :image="(artist.data.image as any).url" class="">
-          <template #default>
-            <div class="flex flex-col items-start justify-between p-4">
-              <h2 class="w-full pb-4 text-2xl border-b">
-                {{ artist.data.name }}
-              </h2>
-
-              <div class="pt-4">
+        <Card
+          :image="(artist.data.image as any).url"
+          :title="artist.data.name"
+          :to="`/artist/${artist.uid}`"
+          class=""
+        >
+          <template #body>
+            <div class="flex flex-col items-start justify-between">
+              <div v-if="slice.variation === 'default'" class="pt-4">
                 <h5 class="font-body text-md">Portfolio</h5>
                 <div class="flex flex-wrap gap-2">
                   <div v-for="(category, c) in artist.data.categories" :key="c">
@@ -55,7 +77,7 @@ console.log("Artists ", artists.value);
                   </div>
                 </div>
               </div>
-              <div class="py-4">
+              <div v-if="slice.variation === 'default'" class="py-4">
                 <h5 class="font-body text-md">Skills</h5>
                 <ol class="flex flex-wrap gap-3">
                   <li
@@ -68,13 +90,6 @@ console.log("Artists ", artists.value);
                 </ol>
               </div>
             </div>
-          </template>
-          <template #footer>
-            <NuxtLink
-              :to="`/artist/${artist.uid}`"
-              class="px-4 text-sm underline text-neutral-400"
-              >Scopri di più <Icon name="ph:arrow-right" size="12"
-            /></NuxtLink>
           </template>
         </Card>
       </li>

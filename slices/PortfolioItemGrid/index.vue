@@ -45,7 +45,7 @@ console.log("Items", items);
     </div>
 
     <div class="container py-24">
-      <ul class="grid lg:grid-cols-3 gap-12">
+      <ul class="grid gap-12 lg:grid-cols-4">
         <li
           v-for="(item, i) in items"
           :key="i"
