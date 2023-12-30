@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { useRouterStore } from "~~/stores/routerStore";
-const routerStore = useRouterStore();
-
 useHead({
   titleTemplate: (title) => `${title} | DA Event`,
 });
@@ -19,7 +16,7 @@ useHead({
 
 <style lang="postcss">
 body {
-  @apply font-body;
+  @apply font-body font-light;
 }
 /* 
 */

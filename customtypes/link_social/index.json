@@ -1,0 +1,52 @@
+{
+  "id": "link_social",
+  "label": "Link Social",
+  "format": "custom",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "social": {
+        "type": "Group",
+        "config": {
+          "label": "Social",
+          "fields": {
+            "icon": {
+              "type": "Select",
+              "config": {
+                "label": "icon",
+                "placeholder": "",
+                "options": [
+                  "Facebook",
+                  "Instagram",
+                  "Threads",
+                  "X",
+                  "TikTok",
+                  "YouTube",
+                  "SoundCloud"
+                ],
+                "default_value": "Facebook"
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "select": null
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

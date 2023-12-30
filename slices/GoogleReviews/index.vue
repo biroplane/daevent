@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import * as prismic from "@prismicio/client";
+import { isFilled, type Content } from "@prismicio/client";
 import { useShopStore } from "~/stores/shop";
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
 defineProps(
-  getSliceComponentProps<prismic.Content.GoogleReviewsSlice>([
+  getSliceComponentProps<Content.GoogleReviewsSlice>([
     "slice",
     "index",
     "slices",
@@ -26,6 +26,7 @@ if (ss.place?.status !== "OK") {
     <div class="relative min-h-[50vh] py-24">
       <div class="absolute inset-0 h-full -z-10">
         <PrismicImage
+          v-if="isFilled.image(slice.primary.background_image)"
           :field="slice.primary.background_image"
           class="object-cover object-center w-full h-full"
         />

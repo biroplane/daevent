@@ -32,6 +32,7 @@ defineProps(
         >
           <PrismicLink :field="item.link">
             <PrismicImage
+              v-if="isFilled.image(item.image)"
               :field="item.image"
               :height="26"
               :width="160"
