@@ -33,7 +33,10 @@ const getIcon = (icon: string) => {
 };
 const _socials = computed(
   () =>
-    socials.value?.data.social.map((s) => ({ _icon: getIcon(s.icon), ...s }))
+    socials.value?.data.social.map((s: any) => ({
+      _icon: getIcon(s.icon),
+      ...s,
+    }))
 );
 console.log("Socials", socials);
 // const socials = [
