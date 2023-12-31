@@ -42,11 +42,11 @@ const send = () => {
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-    class=""
+    class="py-12"
   >
     <div class="flex flex-col w-full lg:flex-row bg-sand-200 @container">
       <div
-        class="flex flex-wrap items-baseline flex-none px-4 py-24 lg:items-start lg:flex-nowrap lg:flex-col lg:w-1/3 bg-gradient-to-t from-secondary-500 to-secondary-300"
+        class="flex flex-wrap items-baseline flex-none px-4 py-24 lg:items-start lg:flex-nowrap lg:flex-col lg:w-1/3 bg-gradient-to-t from-primary-500 to-primary-300"
       >
         <Logo class="hidden lg:block lg:mt-6" />
         <div class="flex-grow my-6 text-white">
@@ -60,7 +60,7 @@ const send = () => {
         <SocialLinks />
         <!-- class="flex-row flex-wrap lg:flex-col lg:basis-full lg:px-0" -->
       </div>
-      <div class="p-6 lg:p-12 lg:w-2/3">
+      <div class="p-6 lg:p-12 lg:w-2/3 bg-neutral-100">
         <form @submit.prevent="send">
           <fieldset>
             <legend>Informazioni di contatto</legend>
