@@ -21,6 +21,7 @@ defineProps(
     <PrismicImage
       v-if="isFilled.image(slice.primary.image)"
       :field="slice.primary.image"
+      class="mx-auto"
     />
   </section>
 </template>

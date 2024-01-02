@@ -171,86 +171,6 @@ export type ArtistPageDocument<Lang extends string = string> =
     Lang
   >;
 
-type ArtistsPageDocumentDataSlicesSlice =
-  | ArtistsGridSlice
-  | HeroSlice
-  | CustomerLogosSlice
-  | VideoGridSlice
-  | VideoSlice
-  | TextSlice
-  | QuoteSlice
-  | GallerySlice
-  | NewsletterSlice
-  | PortfolioItemGridSlice
-  | ContactFormSlice
-  | ItemsByCategorySlice
-  | ImageSlice
-  | HeadingSlice
-  | ArtistCardSlice;
-
-/**
- * Content for Artists Page documents
- */
-interface ArtistsPageDocumentData {
-  /**
-   * Slice Zone field in *Artists Page*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: artists_page.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<ArtistsPageDocumentDataSlicesSlice> /**
-   * Meta Description field in *Artists Page*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: artists_page.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *Artists Page*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: artists_page.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>;
-
-  /**
-   * Meta Title field in *Artists Page*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: artists_page.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_title: prismic.KeyTextField;
-}
-
-/**
- * Artists Page document from Prismic
- *
- * - **API ID**: `artists_page`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type ArtistsPageDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<ArtistsPageDocumentData>,
-    "artists_page",
-    Lang
-  >;
-
 type BlogDocumentDataSlicesSlice = never;
 
 /**
@@ -877,71 +797,6 @@ interface PostDocumentData {
 export type PostDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PostDocumentData>, "post", Lang>;
 
-type SingleCategoryDocumentDataSlicesSlice = ItemsByCategorySlice;
-
-/**
- * Content for Single Category documents
- */
-interface SingleCategoryDocumentData {
-  /**
-   * Slice Zone field in *Single Category*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: single_category.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<SingleCategoryDocumentDataSlicesSlice> /**
-   * Meta Description field in *Single Category*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: single_category.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *Single Category*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: single_category.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>;
-
-  /**
-   * Meta Title field in *Single Category*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: single_category.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_title: prismic.KeyTextField;
-}
-
-/**
- * Single Category document from Prismic
- *
- * - **API ID**: `single_category`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type SingleCategoryDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<SingleCategoryDocumentData>,
-    "single_category",
-    Lang
-  >;
-
 /**
  * Item in *SocialLinks → Links*
  */
@@ -1200,7 +1055,6 @@ export type TestimonialDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | ArtistDocument
   | ArtistPageDocument
-  | ArtistsPageDocument
   | BlogDocument
   | CategoryDocument
   | HomepageDocument
@@ -1209,7 +1063,6 @@ export type AllDocumentTypes =
   | PortfolioDocument
   | PortfolioItemDocument
   | PostDocument
-  | SingleCategoryDocument
   | SociallinksDocument
   | StaticPageDocument
   | SubMenuDocument
@@ -2349,9 +2202,101 @@ export type HeroSliceFullImage = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Hero → Primary*
+ */
+export interface HeroSliceCenterPrimary {
+  /**
+   * eyebrowHeadline field in *Hero → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Eyebrow
+   * - **API ID Path**: hero.primary.eyebrowHeadline
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  eyebrowHeadline: prismic.KeyTextField;
+
+  /**
+   * title field in *Hero → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * description field in *Hero → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * image field in *Hero → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * callToActionLabel field in *Hero → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.primary.callToActionLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  callToActionLabel: prismic.KeyTextField;
+
+  /**
+   * callToActionLink field in *Hero → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.primary.callToActionLink
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  callToActionLink: prismic.LinkField;
+
+  /**
+   * Reverse field in *Hero → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: hero.primary.reverse
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  reverse: prismic.BooleanField;
+}
+
+/**
+ * Center variation for Hero Slice
+ *
+ * - **API ID**: `center`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroSliceCenter = prismic.SharedSliceVariation<
+  "center",
+  Simplify<HeroSliceCenterPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Hero*
  */
-type HeroSliceVariation = HeroSliceDefault | HeroSliceFullImage;
+type HeroSliceVariation =
+  | HeroSliceDefault
+  | HeroSliceFullImage
+  | HeroSliceCenter;
 
 /**
  * Hero Shared Slice
@@ -2991,9 +2936,6 @@ declare module "@prismicio/client" {
       ArtistPageDocument,
       ArtistPageDocumentData,
       ArtistPageDocumentDataSlicesSlice,
-      ArtistsPageDocument,
-      ArtistsPageDocumentData,
-      ArtistsPageDocumentDataSlicesSlice,
       BlogDocument,
       BlogDocumentData,
       BlogDocumentDataSlicesSlice,
@@ -3020,9 +2962,6 @@ declare module "@prismicio/client" {
       PostDocumentData,
       PostDocumentDataCategoriesItem,
       PostDocumentDataSlicesSlice,
-      SingleCategoryDocument,
-      SingleCategoryDocumentData,
-      SingleCategoryDocumentDataSlicesSlice,
       SociallinksDocument,
       SociallinksDocumentData,
       SociallinksDocumentDataLinksItem,
@@ -3092,9 +3031,11 @@ declare module "@prismicio/client" {
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceFullImagePrimary,
+      HeroSliceCenterPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
       HeroSliceFullImage,
+      HeroSliceCenter,
       ImageSlice,
       ImageSliceDefaultPrimary,
       ImageSliceVariation,
