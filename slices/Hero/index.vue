@@ -15,9 +15,12 @@ defineProps(
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-    class="bg-black"
+    class="bg-white"
   >
-    <div class="grid grid-cols-2 h-[50vh] lg:h-[70vh] relative overflow-hidden">
+    <div
+      class="h-[50vh] lg:h-[70vh] relative overflow-hidden"
+      :class="{ 'grid grid-cols-2': slice.variation !== 'center' }"
+    >
       <div
         v-if="isFilled.image(slice.primary.image)"
         class="w-full h-full"
@@ -29,12 +32,19 @@ defineProps(
         />
       </div>
       <div
-        class="flex items-center p-12 z-[1]"
+        class="flex items-center p-12 z-[1] w-full"
         :class="{
           'col-start-2': slice.primary.reverse,
+          'top-0 absolute h-full text-center border':
+            slice.variation === 'center',
         }"
       >
-        <div class="inline-flex flex-col justify-center">
+        <div
+          class="inline-flex flex-col justify-center"
+          :class="{
+            'items-center w-full h-full': slice.variation === 'center',
+          }"
+        >
           <p
             v-if="isFilled.keyText(slice.primary.eyebrowHeadline)"
             class="text-sm lg:text-base text-neutral-500"
@@ -49,14 +59,15 @@ defineProps(
           </div>
           <div
             v-if="isFilled.richText(slice.primary.description)"
-            class="text-base text-neutral-500 lg:text-2xl"
+            class="text-base leading-9 text-neutral-500 lg:text-lg balance"
+            :class="{ 'max-w-2xl mx-auto': slice.variation === 'center' }"
           >
             <PrismicRichText :field="slice.primary.description" />
           </div>
           <div class="flex mt-12 text-center">
             <PrismicLink
               v-if="isFilled.link(slice.primary.callToActionLink)"
-              class="btn cta"
+              class="text-white btn cta"
               :field="slice.primary.callToActionLink"
             >
               {{ slice.primary.callToActionLabel || "Scopri" }}
