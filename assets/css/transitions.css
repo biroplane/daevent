@@ -1,0 +1,19 @@
+.slide-enter-active {
+  animation: slide 0.3s forwards cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.slide-leave-active {
+  animation: slide 0.3s reverse cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

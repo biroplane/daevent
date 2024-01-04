@@ -20,8 +20,6 @@ const { data: testimonials } = await useAsyncData(
     })
 );
 
-console.log("DATA ", testimonials);
-
 const { longDate } = useFilters();
 </script>
 

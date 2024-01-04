@@ -4,7 +4,7 @@ const prismic = usePrismic();
 const { data: navigation } = useAsyncData("navigation", () =>
   prismic.client.getSingle("navigation")
 );
-console.log("Nav", navigation.value);
+
 // const getLink = async (comp: any) => {
 //   console.log("ciao", comp);
 //   if (!comp.child_link.id) return;
@@ -19,7 +19,7 @@ console.log("Nav", navigation.value);
 // })
 </script>
 <template>
-  <ul class="flex flex-col lg:flex-row w-full gap-8">
+  <ul class="flex flex-col w-full gap-8 lg:flex-row">
     <SliceZone
       wrapper="li"
       :slices="navigation?.data.slices ?? []"

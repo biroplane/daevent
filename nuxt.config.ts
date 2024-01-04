@@ -25,7 +25,11 @@ export default defineNuxtConfig({
       link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
     },
   },
-  css: ["~~/assets/css/app.pcss", "~~/assets/css/tailwind.pcss"],
+  css: [
+    "~~/assets/css/app.pcss",
+    "~~/assets/css/tailwind.pcss",
+    "~~/assets/css/transitions.css",
+  ],
   devtools: { enabled: true },
   i18n: {
     locales: [

@@ -38,33 +38,6 @@ const _socials = computed(
       ...s,
     }))
 );
-console.log("Socials", socials);
-// const socials = [
-//   {
-//     link: "https://www.facebook.com",
-//     name: "Facebook",
-//     icon: "cib:facebook",
-//     alt: "Facebook",
-//   },
-//   {
-//     link: "https://www.instagram.com/doncactus_apulia/",
-//     name: "Instagram",
-//     icon: "cib:instagram",
-//     alt: "Facebook",
-//   },
-//   {
-//     link: "https://www.facebook.com",
-//     name: "Google",
-//     icon: "cib:google",
-//     alt: "Facebook",
-//   },
-//   {
-//     link: "https://www.facebook.com",
-//     name: "TikTok",
-//     icon: "cib:tiktok",
-//     alt: "Facebook",
-//   },
-// ];
 </script>
 <template>
   <div class="w-full py-2">
