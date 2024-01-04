@@ -18,7 +18,7 @@ defineProps(
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
     :class="{ container: slice.variation === 'container' }"
-    class="py-2"
+    class="py-2 mx-auto prose"
   >
     <PrismicRichText :field="slice.primary.body" />
   </section>

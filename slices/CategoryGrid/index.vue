@@ -17,7 +17,6 @@ const { data: categories } = await useAsyncData(
   "categories",
   async () => await prismic.client.getAllByType("category", { limit: 8 })
 );
-console.log("Categories", categories.value);
 </script>
 
 <template>
