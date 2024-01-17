@@ -18,10 +18,10 @@ defineProps(
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-    class="relative lg:inline-block mx-2 group mt-4 lg:mt-0"
+    class="relative mx-2 mt-4 lg:inline-block group lg:mt-0"
   >
     <div v-if="slice.variation === 'withSubMenu'" class="">
-      <div class="lg:py-6 cursor-default hover:text-primary">
+      <div class="cursor-default lg:py-6 hover:text-primary">
         {{ slice.primary.label }}
       </div>
       <ul
@@ -35,7 +35,7 @@ defineProps(
           <PrismicLink
             :field="item.child_link"
             class="inline-block w-full py-1"
-            active-class="active"
+            active-class="font-medium text-primary"
             >{{ item.child_label }}</PrismicLink
           >
         </li>
@@ -45,7 +45,7 @@ defineProps(
       <PrismicLink
         :field="slice.primary.link"
         class="py-5 hover:text-primary"
-        active-class="active"
+        active-class="font-medium text-primary"
       >
         {{ slice.primary.label }}
       </PrismicLink>

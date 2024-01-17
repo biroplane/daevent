@@ -17,7 +17,7 @@ defineProps(
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-    class="px-8 py-16 text-white bg-gradient-to-tr from-primary-500 to-primary-700 max-w-none"
+    class="px-2 py-16 text-white md:px-8 bg-gradient-to-tr from-primary-500 to-primary-700 max-w-none"
   >
     <div class="container">
       <div class="prose text-center text-white max-w-none balance">
@@ -26,11 +26,11 @@ defineProps(
       </div>
 
       <ul
-        class="grid gap-12"
+        class="flex flex-col gap-4 md:grid md:gap-12"
         :style="`grid-template-columns:repeat(${slice.primary.columns}, minmax(0,1fr)`"
       >
         <li v-for="(item, i) in slice.items" :key="i">
-          <h3 class="mb-4 text-xl">{{ item.title }}</h3>
+          <h3 class="mb-4 text-sm md:text-xl">{{ item.title }}</h3>
           <PrismicEmbed :field="item.embed" class="w-full aspect-video" />
         </li>
       </ul>
