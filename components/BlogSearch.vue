@@ -17,7 +17,7 @@ const searchText = ref("");
 debouncedWatch(
   searchText,
   async (t: string) => {
-    // if (t.length < 2) return;
+    if (t.length < 2) return;
     const _search = await prismic.client.get({
       filters: [prismic.filter.fulltext("document", t)],
     });

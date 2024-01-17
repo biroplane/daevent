@@ -25,6 +25,7 @@ const fetchArtists = async (id: string) =>
       props.slice.variation === "byCategory" && id
         ? [prismic.filter.at("my.artist.categories.category", id)]
         : [],
+    limit: 6,
     // graphQuery: categoryQuery,
   });
 // const { data: artists } = await useAsyncData("allArtistsGrid", fetchArtists);
@@ -52,7 +53,7 @@ console.log("Artists ", artists.value, props);
       <h2 class="py-6 text-4xl text-primary-500">{{ slice.primary.title }}</h2>
       <PrismicRichText :field="slice.primary.description" />
     </div>
-    <ul class="grid gap-12 md:grid-cols-2 xl:grid-cols-4">
+    <ul class="grid grid-cols-2 gap-4 md:gap-12 md:grid-cols-3 xl:grid-cols-4">
       <li v-for="(artist, a) in artists" :key="a">
         <Card
           :image="(artist.data.image as any).url"
@@ -61,7 +62,7 @@ console.log("Artists ", artists.value, props);
           class=""
         >
           <template #body>
-            <div class="flex flex-col items-start justify-between">
+            <div class="flex-col items-start justify-between hidden md:flex">
               <div v-if="slice.variation === 'default'" class="pt-4">
                 <h5 class="font-body text-md">Portfolio</h5>
                 <div class="flex flex-wrap gap-2">

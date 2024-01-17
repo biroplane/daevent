@@ -34,6 +34,20 @@ export interface ArtistDocumentDataCategoriesItem {
   category: prismic.ContentRelationshipField<"category">;
 }
 
+type ArtistDocumentDataSlicesSlice =
+  | HeroSlice
+  | AlternateGridSlice
+  | VideoGridSlice
+  | TextSlice
+  | ImageSlice
+  | QuoteSlice
+  | NewsletterSlice
+  | VideoSlice
+  | GallerySlice
+  | HeadingSlice
+  | CategoryGridSlice
+  | ContactFormSlice;
+
 /**
  * Content for Artist documents
  */
@@ -92,6 +106,17 @@ interface ArtistDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   categories: prismic.GroupField<Simplify<ArtistDocumentDataCategoriesItem>>;
+
+  /**
+   * Slice Zone field in *Artist*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artist.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ArtistDocumentDataSlicesSlice>;
 }
 
 /**
@@ -168,6 +193,86 @@ export type ArtistPageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
     Simplify<ArtistPageDocumentData>,
     "artist_page",
+    Lang
+  >;
+
+type ArtistsPageDocumentDataSlicesSlice =
+  | ArtistsGridSlice
+  | HeroSlice
+  | CustomerLogosSlice
+  | VideoGridSlice
+  | VideoSlice
+  | TextSlice
+  | QuoteSlice
+  | GallerySlice
+  | NewsletterSlice
+  | PortfolioItemGridSlice
+  | ContactFormSlice
+  | ItemsByCategorySlice
+  | ImageSlice
+  | HeadingSlice
+  | ArtistCardSlice;
+
+/**
+ * Content for Artists Page documents
+ */
+interface ArtistsPageDocumentData {
+  /**
+   * Slice Zone field in *Artists Page*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artists_page.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ArtistsPageDocumentDataSlicesSlice> /**
+   * Meta Description field in *Artists Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: artists_page.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Artists Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: artists_page.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Artists Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: artists_page.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Artists Page document from Prismic
+ *
+ * - **API ID**: `artists_page`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ArtistsPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ArtistsPageDocumentData>,
+    "artists_page",
     Lang
   >;
 
@@ -1055,6 +1160,7 @@ export type TestimonialDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | ArtistDocument
   | ArtistPageDocument
+  | ArtistsPageDocument
   | BlogDocument
   | CategoryDocument
   | HomepageDocument
@@ -2623,6 +2729,16 @@ export interface QuoteSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   text: prismic.RichTextField;
+
+  /**
+   * author field in *Quote → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: quote.primary.author
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  author: prismic.KeyTextField;
 }
 
 /**
@@ -2933,9 +3049,13 @@ declare module "@prismicio/client" {
       ArtistDocumentData,
       ArtistDocumentDataSkillsItem,
       ArtistDocumentDataCategoriesItem,
+      ArtistDocumentDataSlicesSlice,
       ArtistPageDocument,
       ArtistPageDocumentData,
       ArtistPageDocumentDataSlicesSlice,
+      ArtistsPageDocument,
+      ArtistsPageDocumentData,
+      ArtistsPageDocumentDataSlicesSlice,
       BlogDocument,
       BlogDocumentData,
       BlogDocumentDataSlicesSlice,
