@@ -17,6 +17,7 @@ const { data: navigation } = useAsyncData("navigation", () =>
 // navigation.value?.data.slices.forEach( (slice)=>{
 //   slice.items.map(s=>)
 // })
+console.log("Nav", navigation.value);
 </script>
 <template>
   <ul class="flex flex-col w-full gap-8 lg:flex-row">
