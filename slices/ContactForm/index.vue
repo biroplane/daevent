@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as prismic from "@prismicio/client";
-
+import { formatDate } from "@vueuse/core";
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
 defineProps(
@@ -11,30 +11,67 @@ defineProps(
     "context",
   ])
 );
+
+const route = useRoute();
 const isSending = ref(false);
-const form = reactive({
+const messageSend = ref();
+const form = ref({
+  formName: route.params.uid || "contacts",
   name: "",
   surname: "",
   email: "",
   phone: "",
   reason: "",
   message: "",
+  customization: false,
 });
-const send = () => {
+const send = async (event: Event) => {
+  event.preventDefault();
+
+  // const myForm = event.target as HTMLFormElement;
   try {
-    console.log("Ready to send", form);
     isSending.value = true;
-    setTimeout(() => {
-      console.log("DONE!", form);
-      isSending.value = false;
-      Object.keys(form).forEach((key: any) => {
-        console.log(`Key ${key} `);
-        form[key as keyof typeof form] = "";
-      });
-    }, 5000);
+    const formData = await $fetch("https://usebasin.com/f/0d8424e7bf30", {
+      method: "POST",
+      body: form.value,
+    });
+
+    console.log("Form submited", formData);
+    messageSend.value = true;
   } catch (error) {
-    console.log("error sending", error);
+    console.log("Errore FORM", error);
+    messageSend.value = false;
+  } finally {
+    isSending.value = false;
   }
+};
+// watch(
+//   marketingForm,
+//   (vals) => {
+//     form.value.date = vals.date;
+//     form.value.articles = vals.product;
+//     form.value.quantity = vals.pices;
+//     form.value.customization = vals.customization;
+//   },
+//   {
+//     deep: true,
+//   }
+// );
+
+const composeMessage = () => {
+  form.value.message = `Ciao Don Cactus,
+Ciao, Mi chiamo ${form.value.name} ${
+    form.value.surname
+  } e sto organizzando un evento per il prossimo ${formatDate(
+    new Date(form.value.date),
+    "DD MMMM YYYY"
+  )}. 
+Mi piacerebbe ricevere un preventivo per l'acquisto di ${
+    form.value.quantity
+  } "${form.value.articles}" ${
+    form.value.customization ? "da personalizzare" : ""
+  }. 
+Potresti gentilmente inviarmi tutte le informazioni necessarie, inclusi i prezzi e le modalità di consegna?`;
 };
 </script>
 
@@ -42,62 +79,80 @@ const send = () => {
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-    class="py-12"
+    class="container px-8 py-24"
   >
-    <div class="flex flex-col w-full lg:flex-row bg-sand-200 @container">
-      <div
-        class="flex flex-wrap items-baseline flex-none px-4 py-24 lg:items-start lg:flex-nowrap lg:flex-col lg:w-1/3 bg-gradient-to-t from-primary-500 to-primary-300"
-      >
-        <Logo class="hidden lg:block lg:mt-6" />
-        <div class="flex-grow my-6 text-white">
-          <h3 class="text-3xl font-bold leading-8">
-            {{ slice.primary.title }}
-          </h3>
-          <div class="hidden py-4 lg:block">
-            <PrismicRichText :field="slice.primary.description" />
+    <div id="contact_form" class="max-w-4xl mx-auto">
+      <div class="prose-xl text-center">
+        <h3 class="">
+          {{ slice.primary.title }}
+        </h3>
+        <PrismicRichText :field="slice.primary.description" />
+      </div>
+
+      <form netlify method="post" name="contact-form" @submit.prevent="send">
+        <input type="hidden" name="form-name" value="contact-form" />
+        <div v-if="messageSend" class="flex items-center gap-8">
+          <Icon name="ci:chat-check" size="96" class="text-green-400"></Icon>
+          <div class="">
+            <h4 class="text-3xl font-bold">La tua richiesta è arrivata!</h4>
+            <p>Controlla la tua mail nelle prossime ore! 💚</p>
           </div>
         </div>
-        <SocialLinks />
-        <!-- class="flex-row flex-wrap lg:flex-col lg:basis-full lg:px-0" -->
-      </div>
-      <div class="p-6 lg:p-12 lg:w-2/3 bg-neutral-100">
-        <form @submit.prevent="send">
-          <fieldset>
-            <legend>Informazioni di contatto</legend>
-            <div class="mb-4 -mt-4 text-sm text-neutral-400">
-              i campi contrassegnati con <strong>*</strong> sono obbligatori
-            </div>
-            <div class="grid grid-cols-2 gap-4">
-              <input
-                v-model="form.name"
-                type="text"
-                placeholder="Nome"
-                required
-              />
-              <input
-                v-model="form.surname"
-                type="text"
-                placeholder="Cognome"
-                required
-              />
-              <input
-                v-model="form.email"
-                type="email"
-                placeholder="Email"
-                required
-              />
-              <input
-                v-model="form.phone"
-                type="tel"
-                placeholder="Telefono"
-                required
-              />
-            </div>
-          </fieldset>
-          <fieldset>
-            <legend>Di cosa hai bisogno?</legend>
+        <div v-if="messageSend === false" class="flex items-center gap-8">
+          <Icon name="ci:chat-check" size="96" class="text-red-400"></Icon>
+          <div class="">
+            <h4 class="text-3xl font-bold">Oh no! 😵</h4>
+            <p>
+              La tua richiesta non è andata a buon fine.<br />
+              Riprova tra qualche minuto
+            </p>
+          </div>
+        </div>
+        <fieldset
+          :disabled="messageSend"
+          :class="{ 'opacity-20': messageSend }"
+        >
+          <legend>Informazioni di contatto</legend>
+          <p class="mb-4 -mt-4 text-sm text-neutral-400">
+            i campi contrassegnati con <strong>*</strong> sono obbligatori
+          </p>
+          <div class="grid grid-cols-2 gap-4">
+            <input
+              v-model="form.name"
+              type="text"
+              placeholder="Nome *"
+              required
+              name="nome"
+            />
+            <input
+              v-model="form.surname"
+              type="text"
+              placeholder="Cognome *"
+              required
+              name="cognome"
+            />
+            <input
+              v-model="form.email"
+              type="email"
+              placeholder="Email *"
+              required
+              inputmode="email"
+              name="email"
+              autocomplete="email"
+            />
+            <input
+              v-model="form.phone"
+              type="tel"
+              placeholder="Telefono *"
+              required
+              inputmode="tel"
+              name="telefono"
+            />
+          </div>
 
-            <select v-model="form.reason">
+          <div v-if="slice.variation === 'default'" class="">
+            <legend class="mt-6">Di cosa hai bisogno? *</legend>
+            <select v-model="form.reason" required name="reason">
               <option
                 v-for="val in ['informazioni', 'preventivi']"
                 :key="val"
@@ -107,15 +162,53 @@ const send = () => {
                 {{ val }}
               </option>
             </select>
-          </fieldset>
-          <fieldset>
-            <legend>Il tuo messaggio</legend>
+          </div>
+          <div v-else class="mt-8">
+            <legend class="mt-6">Richiedi un preventivo</legend>
+            <div class="grid grid-cols-2 gap-4">
+              <input
+                v-model="form.date"
+                type="text"
+                placeholder="Data dell'evento"
+                onfocus="(this.type='date')"
+                name="dataevento"
+              />
+              <input
+                v-model="form.articles"
+                type="text"
+                placeholder="Articolo che ti interessa"
+                name="articoli"
+              />
+              <input
+                v-model="form.quantity"
+                type="text"
+                placeholder="Quantità"
+                inputmode="numeric"
+                name="quantita"
+              />
+            </div>
+          </div>
 
-            <textarea v-model="form.message"></textarea>
-          </fieldset>
-          <div class="flex justify-end">
+          <legend class="mt-6">Il tuo messaggio</legend>
+
+          <div class="relative">
+            <div
+              v-if="slice.variation === 'flat'"
+              class="absolute p-1 cursor-pointer top-2 right-2 text-primary-300"
+            >
+              <button class="sparkle" @click.prevent="composeMessage">
+                <Icon name="ph:sparkle-light" size="24"></Icon>
+              </button>
+            </div>
+            <textarea v-model="form.message" name="messaggio"></textarea>
+          </div>
+          <div class="flex items-baseline justify-between">
+            <SocialLinks />
+
             <button
-              class="self-end px-12 py-2 mt-6 text-white rounded bg-primary-600 hover:bg-primary-700"
+              aria-label="Send contact form"
+              type="submit"
+              class="flex px-12 py-2 mt-6 text-white rounded bg-primary-600 hover:bg-primary-700"
             >
               Invia
               <Icon
@@ -126,8 +219,8 @@ const send = () => {
               ></Icon>
             </button>
           </div>
-        </form>
-      </div>
+        </fieldset>
+      </form>
     </div>
   </section>
 </template>
@@ -150,7 +243,10 @@ form {
   textarea {
     @apply min-h-[15ch] lg:min-h-[20ch];
   }
-  &:invalid button {
+  &:invalid button.sparkle {
+    @apply opacity-20 cursor-not-allowed;
+  }
+  &:invalid button[type="submit"] {
     @apply bg-neutral-300 cursor-not-allowed;
   }
 }

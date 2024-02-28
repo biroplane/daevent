@@ -23,7 +23,7 @@ defineProps<{
       >
         <div class="flex items-baseline justify-between">
           <h2
-            class="w-full pb-4 text-base md:text-2xl balance"
+            class="w-full pb-4 text-base md:text-xl balance"
             :class="{ 'border-b': $slots.body }"
           >
             {{ title }}

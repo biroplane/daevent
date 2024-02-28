@@ -40,7 +40,7 @@ const formatDate = (date: string) => {
     <ul
       class="grid gap-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
     >
-      <li v-for="(post, p) in posts?.results" :key="p">
+      <li v-for="(post, p) in posts.results" :key="p">
         <Card
           :image="(post.data as any).featured_image.url"
           :title="(post.data as any).title"
@@ -48,7 +48,7 @@ const formatDate = (date: string) => {
         >
           <template #footer>
             <div
-              class="flex pb-4 transition-opacity opacity-30 group-hover:opacity-100 date_block"
+              class="flex pb-4 transition-opacity group-hover:opacity-100 date_block"
             >
               <div class="day">
                 {{ formatDate(post.data.published_date as string).day }}
@@ -75,7 +75,7 @@ const formatDate = (date: string) => {
 </template>
 <style lang="postcss">
 .date_block {
-  @apply flex gap-2 items-start justify-start  text-primary-300;
+  @apply flex gap-2 items-start justify-start  text-primary-600;
 
   .day {
     @apply font-semibold text-3xl md:text-4xl md:leading-10;

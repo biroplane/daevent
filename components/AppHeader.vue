@@ -3,7 +3,7 @@ const drawer = ref(false);
 </script>
 <template>
   <div class="fixed z-50 w-full bg-white bg-opacity-70 backdrop-blur-md">
-    <div class="flex items-center justify-between gap-8 px-8 lg:container">
+    <div class="flex items-center justify-between gap-8 px-8 xl:container">
       <div class="lg:hidden -order-first">
         <button
           class="flex items-center justify-center bg-white w-14 h-14 aspect-square hover:bg-primary-50"

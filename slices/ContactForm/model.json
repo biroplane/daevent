@@ -25,7 +25,34 @@
             "label": "Description",
             "placeholder": "",
             "allowTargetBlank": true,
-            "single": "paragraph,strong,em"
+            "multi": "paragraph,strong,em"
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "flat",
+      "name": "landing",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em"
           }
         }
       },

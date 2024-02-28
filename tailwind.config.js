@@ -18,18 +18,18 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#83C0FA",
-          50: "#F0F8FE",
-          100: "#E6F3FE",
-          200: "#CEE6FD",
-          300: "#B5DAFC",
-          400: "#9DCEFB",
-          500: "#83C0FA",
-          600: "#3B9CF7",
-          700: "#0976DD",
-          800: "#064F93",
-          900: "#03274A",
-          950: "#011222",
+          DEFAULT: "#2EDB84",
+          50: "#E9FBF2",
+          100: "#D3F8E6",
+          200: "#ACF1CF",
+          300: "#81E9B5",
+          400: "#5AE39E",
+          500: "#2EDB84",
+          600: "#1FB76B",
+          700: "#17874F",
+          800: "#105B36",
+          900: "#072C1A",
+          950: "#04160D",
         },
         secondary: {
           DEFAULT: "#F4E288",
@@ -49,7 +49,7 @@ module.exports = {
       },
       fontFamily: {
         body: "Inter",
-        heading: "Bellota",
+        heading: "'Montserrat Alternates'",
       },
       aspectRatio: {
         "3/4": "3 / 4",

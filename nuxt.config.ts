@@ -15,9 +15,9 @@ export default defineNuxtConfig({
       },
     ],
   ],
-  ssr: true,
+  ssr: false,
   nitro: {
-    preset: "netlify",
+    preset: "netlify-static",
   },
   app: {
     pageTransition: { name: "page", mode: "out-in" },
